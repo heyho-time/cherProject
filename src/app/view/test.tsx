@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function test() {
     return (
         <Container>
-            hi
+            hello hello
         </Container>
     )
 }
