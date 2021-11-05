@@ -1,5 +1,5 @@
 import * as Entity from "domain/entity";
 
-export interface UCGetUser {
-    execute(): Promise<Entity.User>;
+export interface UCGetProducts {
+    execute(): Promise<Entity.Product>;
 }
