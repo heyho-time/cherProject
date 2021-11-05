@@ -7,68 +7,40 @@ import { injectable } from "inversify";
 const products:Entity.Product[] = [
 	{
 		"id": "uuid",
-		"image": ["https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg", "url", "url"],
-		"price": 5000,
+		"image": ["https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg", "https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg", "https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg"],
 		"title": "cookie",
-		"categoryIds" : [1, 2],
+		"categoryIds" : ["1", "2"],
 		"productDetail": {
-			"description": "asdfasdfa",
-			"category" : { "id" : 1 , "name" : "쿠키"},
+			"price": 5000,
+			"description": "A versatile, double stacked patch cable. For eurorack use only.",
+			"category" : { "id" : "1" , "name" : "쿠키"},
 			"inventory": { "stock": 420, "sku": "SKUA"},
-			"avail": 20,
-			"state": "sold out",
-						"option": [
+			"state": {"tax" : true, "soldOut" : false, "avail" : 20},
+			"option": [
 						{
-								"id": "uuid",
+								"id": "1",
 								"name": "color",
-								"tag": [{"id": "uuid", "name": "blue"}, {"id": "uuid", "name": "gray"}]
+								"tag": [{"id": "1", "name": "blue"}, {"id": "2", "name": "gray"}, {"id": "3", "name" : "pink"}]
 							},
 							{
-								"id": "uuid",
+								"id": "2",
 								"name": "size",
-								"tag": [{"id": "uuid", "name": "Large"}, {"id": "uuid", "name": "Medium"}]
+								"tag": [{"id": "1", "name": "Large"}, {"id": "2", "name": "Medium"}]
 							}
 						]
-					}
+		}
 	},
-	 {
+	{
 		"id": "oopp",
 		"image": ["https://www.history.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc3OTk5Njc1MTU5MjI1OTY1/valentines-day-chocolate-gettyimages-923430892.jpg", "url", "url"],
-		"price": 5000,
 		"title": "chocolate",
-		"categoryIds" : [1],
+		"categoryIds" : ["1", "3"],
 		"productDetail": {
-			"description": "asdfasdfa",
-			"category": { "id": 2, "name":"초콜릿"},
+			"price": 5000,
+			"description": "A versatile, double stacked patch cable. For eurorack use only.",
+			"category": { "id": "2", "name":"초콜릿"},
 			"inventory": { "stock": 420, "sku": "SKUB"},
-			"avail": 20,
-			"state": "sold out",
-						"option": [
-							{
-								"id": "uuid",
-								"name": "color",
-								"tag": [{"id": "uuid", "name": "blue"}, {"id": "uuid", "name": "gray"}]
-							},
-							{
-								"id": "uuid",
-								"name": "size",
-								"tag": [{"id": "uuid", "name": "Large"}, {"id": "uuid", "name": "Medium"}]
-							}
-						]
-					}
-	},
-	{
-		"id": "uupd",
-		"image": ["https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg", "url", "url"],
-		"price": 5000,
-		"title": "cookie",
-		"categoryIds" : [1, 2],
-		"productDetail": {
-			"description": "asdfasdfa",
-			"category" : { "id" : 1 , "name" : "쿠키"},
-			"inventory": { "stock": 420, "sku": "SKUC"},
-			"avail": 20,
-			"state": "sold out",
+			"state": {"tax" : false, "soldOut" : false, "avail" : 10},
 						"option": [
 						{
 								"id": "uuid",
@@ -76,65 +48,93 @@ const products:Entity.Product[] = [
 								"tag": [{"id": "uuid", "name": "blue"}, {"id": "uuid", "name": "gray"}]
 							},
 							{
-								"id": "uuid",
+								"id": "1",
+								"name": "color",
+								"tag": [{"id": "1", "name": "blue"}, {"id": "2", "name": "gray"}]
+							},
+							{
+								"id": "2",
 								"name": "size",
-								"tag": [{"id": "uuid", "name": "Large"}, {"id": "uuid", "name": "Medium"}]
+								"tag": [{"id": "1", "name": "Large"}, {"id": "2", "name": "Medium"}]
 							}
 						]
 					}
 	},
-	 {
-		"id": "ootd",
+	{
+		"id": "uuia",
+		"image": ["https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg", "url", "url"],
+		"title": "cookie",
+		"categoryIds" : ["1", "2"],
+		"productDetail": {
+			"price": 5000,
+			"description": "A versatile, double stacked patch cable. For eurorack use only.",
+			"category" : { "id" : "1" , "name" : "쿠키"},
+			"inventory": { "stock": 420, "sku": "SKUA"},
+			"state": {"tax" : true, "soldOut" : false, "avail" : 20},
+			"option": [
+						{
+								"id": "1",
+								"name": "color",
+								"tag": [{"id": "1", "name": "blue"}, {"id": "2", "name": "gray"}]
+							},
+							{
+								"id": "2",
+								"name": "size",
+								"tag": [{"id": "1", "name": "Large"}, {"id": "2", "name": "Medium"}]
+							}
+						]
+		}
+	},
+	{
+		"id": "oopt",
 		"image": ["https://www.history.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc3OTk5Njc1MTU5MjI1OTY1/valentines-day-chocolate-gettyimages-923430892.jpg", "url", "url"],
-		"price": 5000,
 		"title": "chocolate",
-		"categoryIds" : [1],
+		"categoryIds" : ["1", "3"],
 		"productDetail": {
-			"description": "asdfasdfa",
-			"category": { "id": 2, "name":"초콜릿"},
-			"inventory": { "stock": 420, "sku": "SKUD"},
-			"avail": 20,
-			"state": "sold out",
+			"price": 5000,
+			"description": "A versatile, double stacked patch cable. For eurorack use only.",
+			"category": { "id": "2", "name":"초콜릿"},
+			"inventory": { "stock": 420, "sku": "SKUB"},
+			"state": {"tax" : false, "soldOut" : false, "avail" : 10},
 						"option": [
 							{
-								"id": "uuid",
+								"id": "1",
 								"name": "color",
-								"tag": [{"id": "uuid", "name": "blue"}, {"id": "uuid", "name": "gray"}]
+								"tag": [{"id": "1", "name": "blue"}, {"id": "2", "name": "gray"}]
 							},
 							{
-								"id": "uuid",
+								"id": "2",
 								"name": "size",
-								"tag": [{"id": "uuid", "name": "Large"}, {"id": "uuid", "name": "Medium"}]
+								"tag": [{"id": "1", "name": "Large"}, {"id": "2", "name": "Medium"}]
 							}
 						]
 					}
 	},
 	{
-		"id": "ttip",
+		"id": "upto",
 		"image": ["https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg", "url", "url"],
-		"price": 5000,
 		"title": "cookie",
-		"categoryIds" : [1, 2],
+		"categoryIds" : ["1", "2"],
 		"productDetail": {
-			"description": "asdfasdfa",
-			"category" : { "id" : 1 , "name" : "쿠키"},
-			"inventory": { "stock": 420, "sku": "SKUE"},
-			"avail": 20,
-			"state": "sold out",
-						"option": [
+			"price": 5000,
+			"description": "A versatile, double stacked patch cable. For eurorack use only.",
+			"category" : { "id" : "1" , "name" : "쿠키"},
+			"inventory": { "stock": 420, "sku": "SKUA"},
+			"state": {"tax" : true, "soldOut" : false, "avail" : 20},
+			"option": [
 						{
-								"id": "uuid",
+								"id": "1",
 								"name": "color",
-								"tag": [{"id": "uuid", "name": "blue"}, {"id": "uuid", "name": "gray"}]
+								"tag": [{"id": "1", "name": "blue"}, {"id": "2", "name": "gray"}]
 							},
 							{
-								"id": "uuid",
+								"id": "2",
 								"name": "size",
-								"tag": [{"id": "uuid", "name": "Large"}, {"id": "uuid", "name": "Medium"}]
+								"tag": [{"id": "1", "name": "Large"}, {"id": "2", "name": "Medium"}]
 							}
 						]
-					}
-	}
+		}
+	},
 ];
 
 @injectable()
@@ -143,7 +143,7 @@ export default class ProductApiImpl implements ProductApi {
         return new Promise((resolve) => {
             const product : Entity.Product[] = products;
 
-				resolve(product);
+			resolve(product);
 
 			// Axios.get('')
 			// .then(() => {

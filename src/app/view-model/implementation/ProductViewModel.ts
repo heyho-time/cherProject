@@ -11,7 +11,7 @@ export default class ProductViewModelImpl implements ProductViewModel {
         this.getProducts = getProducts;
     }
 
-    getList(): Promise<Entity.Product[]> {
+    getProductList(): Promise<Entity.Product[]> {
         return this.getProducts.execute();
     }
 }

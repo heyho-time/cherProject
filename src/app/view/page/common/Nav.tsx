@@ -36,6 +36,9 @@ const Container = styled.div`
   height: 92px;
   box-shadow: 0 1px 0 0 var(--greyblue-15);
   background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
 
   img {
   width: 20px;

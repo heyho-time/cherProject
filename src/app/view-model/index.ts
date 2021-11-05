@@ -1,5 +1,24 @@
 import * as Entity from "domain/entity";
 
 export interface ProductViewModel {
-    list() : Promise<Entity.Product[]>;
+    getProductList() : Promise<Entity.Product[]>;
+}
+
+export interface UserViewModel {
+    clickSignIn: (account: Entity.User) => Promise<Entity.User>;
+}
+
+export interface CategoryViewModel {
+    getCategory(): Promise<Entity.Category[]>;
+}
+
+export interface CheckoutViewModel {
+    getCategory(): Promise<Entity.Category[]>;
+    getProductList(): Promise<Entity.Product[]>;
+    getCartList(): Promise<Entity.Cart[]>;
+    deleteCartItem(productId: Entity.Cart): Promise<Entity.Cart>;
+}
+
+export interface ProductOptionViewModel {
+    clickAddToCheckout(product: Entity.Cart): Promise<Entity.Cart>;
 }
