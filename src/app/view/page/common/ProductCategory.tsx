@@ -3,29 +3,6 @@ import styled from 'styled-components';
 import container from "injector";
 import {UserViewModel} from '../../../view-model';
 
-const vm: UserViewModel = container.get<UserViewModel>("UserViewModel");
-
-const ProductCategory :React.FC= () => {
-
-    const test = () => {
-        vm.clickUser()
-            .then((product)=>{
-                console.log(product);
-            })
-            .catch(()=>{
-                alert("error");
-            });
-    };
-    return (
-        <Wrap>
-            <div onClick={test}>Product</div>
-            <div>Category</div>
-        </Wrap>
-    );
-};
-
-export default ProductCategory;
-
 const Wrap = styled.div`
   display: flex;
   width: 100%;
@@ -48,3 +25,27 @@ const Wrap = styled.div`
   };
   };
 `;
+
+const ProductCategory :React.FC= () => {
+
+    const vm: UserViewModel = container.get<UserViewModel>("UserViewModel");
+
+    const test = () => {
+        vm.clickUser()
+            .then((product)=>{
+                console.log(product);
+            })
+            .catch(()=>{
+                alert("error");
+            });
+    };
+
+    return (
+        <Wrap>
+            <div onClick={test}>Product</div>
+            <div>Category</div>
+        </Wrap>
+    );
+};
+
+export default ProductCategory;
