@@ -85,7 +85,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/app/view/index.html",
         }),
-        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ko/),
+        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en/),
     ],
 
 }

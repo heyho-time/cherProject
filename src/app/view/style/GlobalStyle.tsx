@@ -38,50 +38,50 @@ const GlobalStyle = createGlobalStyle`
         list-style:none;
     }
 
-    @font-face { 
-        font-family:Druk; 
-        src:url(${Drukeot}); 
+    @font-face {
+        font-family:Druk;
+        src:url(${Drukeot});
         src:url(${Drukwoff}) format('woff'),
-            url(${Drukttf}) format('truetype') 
+            url(${Drukttf}) format('truetype')
     }
 
-    @font-face { 
+    @font-face {
         font-family:NanumSquare;
-        src:url(${NanumSquareReot}); 
+        src:url(${NanumSquareReot});
         src:url(${NanumSquareRwoff}) format('woff'),
-            url(${NanumSquareRttf}) format('truetype') 
+            url(${NanumSquareRttf}) format('truetype')
     }
 
-    @font-face { 
+    @font-face {
         font-family:NanumSquare_acL;
         font-weight: 300;
-        src:url(${NanumSquareLeot}); 
+        src:url(${NanumSquareLeot});
         src:url(${NanumSquareLwoff}) format('woff'),
-            url(${NanumSquareLttf}) format('truetype') 
+            url(${NanumSquareLttf}) format('truetype')
     }
 
-    @font-face { 
+    @font-face {
         font-family:NanumSquare_acR;
         font-weight: 400;
-        src:url(${NanumSquareReot}); 
+        src:url(${NanumSquareReot});
         src:url(${NanumSquareRwoff}) format('woff'),
-            url(${NanumSquareRttf}) format('truetype') 
+            url(${NanumSquareRttf}) format('truetype')
     }
 
-    @font-face { 
+    @font-face {
         font-family:NanumSquare_acB;
         font-weight: 600;
-        src:url(${NanumSquareBeot}); 
+        src:url(${NanumSquareBeot});
         src:url(${NanumSquareBwoff}) format('woff'),
-            url(${NanumSquareBttf}) format('truetype') 
+            url(${NanumSquareBttf}) format('truetype')
     }
 
-    @font-face { 
+    @font-face {
         font-family:NanumSquare_acEB;
         font-weight: 700;
-        src:url(${NanumSquareEBeot}); 
+        src:url(${NanumSquareEBeot});
         src:url(${NanumSquareEBwoff}) format('woff'),
-            url(${NanumSquareEBttf}) format('truetype') 
+            url(${NanumSquareEBttf}) format('truetype')
     }
 
     body {

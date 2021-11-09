@@ -1,5 +1,5 @@
 import * as Entity from "domain/entity";
 
-export interface UserRepository {
-    getUser(): Promise<Entity.User>;
+export interface ProductRepository {
+    getProducts(): Promise<Entity.Product[]>;
 }
