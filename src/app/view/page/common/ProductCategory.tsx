@@ -1,14 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
+import container from "injector";
+import {UserViewModel} from '../../../view-model';
 
-export default function ProductCategory() {
+const vm: UserViewModel = container.get<UserViewModel>("UserViewModel");
+
+const ProductCategory :React.FC= () => {
+
+    const test = () => {
+        vm.clickUser()
+            .then((product)=>{
+                console.log(product);
+            })
+            .catch(()=>{
+                alert("error");
+            });
+    };
     return (
         <Wrap>
-            <div>Product</div>
+            <div onClick={test}>Product</div>
             <div>Category</div>
         </Wrap>
     );
-}
+};
+
+export default ProductCategory;
 
 const Wrap = styled.div`
   display: flex;

@@ -1,27 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Nav() {
-    return (
-        <Container>
-            <ButtonWrap>
-                <Button>
-                    <img alt="shoppingCartImg" src="src/app/view/assets/images/shopping-cart-idle@3x.png" />
-                    <p>Checkout</p>
-                </Button>
-                <Button>
-                    <img alt="salesImg"src="src/app/view/assets/images/sales-idle.png" />
-                    <p>Sales</p>
-                </Button>
-                <Button>
-                    <img alt="productImg" src="src/app/view/assets/images/store-idle.png" />
-                    <p>Product</p>
-                </Button>
-            </ButtonWrap>
-        </Container>
-    );
-}
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -66,3 +45,26 @@ const Button = styled.div`
 const ButtonWrap = styled.div`
     display: flex;
 `;
+
+const Nav: React.FC = ()=> {
+    return (
+        <Container>
+            <ButtonWrap>
+                <Button>
+                    <img alt="" src="../../assets/images/shopping-cart-idle.png" />
+                    <p>Checkout</p>
+                </Button>
+                <Button>
+                    <img alt="" src="../../assets/images/sales-idle.png" />
+                    <p>Sales</p>
+                </Button>
+                <Button>
+                    <img alt="" src="../../assets/images/store-idle.png" />
+                    <p>Product</p>
+                </Button>
+            </ButtonWrap>
+        </Container>
+    );
+};
+
+export default Nav;

@@ -1,19 +1,6 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import Items from './Items';
-
-export default function ProductList() {
-    return (
-        <BackGround>
-                <TableHead>
-                    <Column>Product Name</Column>
-                    <Column>Quantity</Column>
-                    <Column>Category</Column>
-                </TableHead>
-                <Items />
-        </BackGround>
-    )
-}
 
 const BackGround = styled.div`
     margin: 0 64px;
@@ -35,3 +22,15 @@ const Column = styled.div`
     align-items: center;
     width: 600px;
 `;
+export default function ProductList() {
+    return (
+        <BackGround>
+                <TableHead>
+                    <Column>Product Name</Column>
+                    <Column>Quantity</Column>
+                    <Column>Category</Column>
+                </TableHead>
+                <Items />
+        </BackGround>
+    );
+}

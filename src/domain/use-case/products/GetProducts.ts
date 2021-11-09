@@ -11,7 +11,7 @@ export default class UCGetProductsImpl implements UCGetProducts {
         this.productRepository = productRepository;
     }
 
-    execute(): Promise<Entity.Product> {
+    execute(): Promise<Entity.Product[]> {
         return this.productRepository.getProducts();
     }
 }

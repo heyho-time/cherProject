@@ -12,7 +12,6 @@ export interface Product {
     productDetail: ProductDetail;
 }
 
-
 export interface ProductDetail {
     description : string;
     categoryIds : number[];

@@ -4,25 +4,6 @@ import { injectable } from "inversify";
 // import Axios from "axios";
 //import * as ApiManager from "data/remote/ApiManager";
 
-@injectable()
-export default class ProductApiImpl implements ProductApi {
-    getProducts(): Promise<Entity.Product[]> {
-        return new Promise((resolve) => {
-            const product : <Entity.Product[]> = products;
-
-			resolve(product);
-			// Axios.get('')
-			// .then(() => {
-			// 	resolve(product)
-			// })
-			// .catch(()=> {
-			// 	reject("error")
-			// })
-
-        });
-    }
-}
-
 const products:Entity.Product[] = [
 	{
 		"id": "uuid",
@@ -52,7 +33,7 @@ const products:Entity.Product[] = [
 	 {
 		"id": "uuid",
 		"image": ["url", "url", "url"],
-					"price": 5000,
+		"price": 5000,
 		"title": "cookie",
 		"productDetail": {
 						"description": "asdfasdfa",
@@ -75,3 +56,23 @@ const products:Entity.Product[] = [
 					}
 	}
 ];
+
+@injectable()
+export default class ProductApiImpl implements ProductApi {
+    getProducts(): Promise<Entity.Product[]> {
+        return new Promise((resolve) => {
+            const product : Entity.Product[] = products;
+
+				resolve(product);
+
+			// Axios.get('')
+			// .then(() => {
+			// 	resolve(product)
+			// })
+			// .catch(()=> {
+			// 	reject("error")
+			// })
+
+        });
+    }
+}

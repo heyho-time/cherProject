@@ -5,11 +5,11 @@ export const BASE_URL = "이곳에 서버연결하세요"; // 테스트 서버
 const ApiManager = () => {};
 
 const normalClient: AxiosInstance = axios.create({
-    baseURL: BASE_URL,
+    baseURL: BASE_URL
 });
 
 const authClient: AxiosInstance = axios.create({
-    baseURL: BASE_URL,
+    baseURL: BASE_URL
 });
 
 authClient.interceptors.request.use((config: AxiosRequestConfig) => {
@@ -27,13 +27,13 @@ authClient.interceptors.request.use((config: AxiosRequestConfig) => {
                 .request({
                     baseURL: BASE_URL,
                     url: "/key/" + userKey,
-                    method: "get",
+                    method: "get"
                 })
                 .then((response: AxiosResponse) => {
                     localStorage.setItem("accessKey", JSON.stringify(response.data));
                     const payload = {
                         ...config,
-                        headers: { ...config.headers, accessKey: response.data.accessKey },
+                        headers: { ...config.headers, accessKey: response.data.accessKey }
                     };
                     return payload;
                 })
@@ -47,7 +47,7 @@ authClient.interceptors.request.use((config: AxiosRequestConfig) => {
             message: "NoUserKey",
             config: config,
             isAxiosError: true,
-            toJSON: () => ({}),
+            toJSON: () => ({})
         };
         return Promise.reject(err);
     }
@@ -68,13 +68,13 @@ export const request = (config: AxiosRequestConfig, auth?: boolean) => {
                 .request({
                     baseURL: BASE_URL,
                     url: "/key/" + userKey,
-                    method: "get",
+                    method: "get"
                 })
                 .then((response: AxiosResponse) => {
                     localStorage.setItem("accessKey", JSON.stringify(response.data));
                     const payload = {
                         ...config,
-                        headers: { ...config.headers, accessKey: response.data.accessKey },
+                        headers: { ...config.headers, accessKey: response.data.accessKey }
                     };
                     return payload;
                 })

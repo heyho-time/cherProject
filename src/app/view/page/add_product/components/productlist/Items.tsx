@@ -1,17 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Items() {
-    return (
-    <List>
-        <img src=""/>
-        <Column>Product Name</Column>
-        <Column>Quantity</Column>
-        <Column>Category</Column>
-    </List>
-    );
-}
-
 const List = styled.div`
     display: flex;
     /* justify-content: space-evenly; */
@@ -32,3 +21,14 @@ const Column = styled.div`
     align-items: center;
     width: 600px;
 `;
+
+export default function Items() {
+    return (
+    <List>
+        <img src=""/>
+        <Column>Product Name</Column>
+        <Column>Quantity</Column>
+        <Column>Category</Column>
+    </List>
+    );
+}

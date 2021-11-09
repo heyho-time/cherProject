@@ -1,17 +1,17 @@
 import * as Entity from "domain/entity";
 import { inject, injectable } from "inversify";
+import { UCGetProducts } from "domain/use-case";
 import { UserViewModel } from "app/view-model";
-import { UCGetUser } from "domain/use-case";
 
 @injectable()
 export default class UserViewModelImpl implements UserViewModel {
-    private getUser: UCGetUser;
+    private getProducts: UCGetProducts;
 
-    constructor(@inject("UCGetUser") getUser: UCGetUser) {
-        this.getUser = getUser;
+    constructor(@inject("UCGetProducts") getProducts: UCGetProducts) {
+        this.getProducts = getProducts;
     }
 
-    clickUser(): Promise<Entity.User> {
-        return this.getUser.execute();
+    clickUser(): Promise<Entity.Product[]> {
+        return this.getProducts.execute();
     }
 }

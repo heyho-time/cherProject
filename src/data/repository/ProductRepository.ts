@@ -4,14 +4,14 @@ import { ProductApi } from "data/remote";
 import { ProductRepository } from "domain/interactor/repository";
 
 @injectable()
-export default class ProductRepositoryImpl implements ProductRepository {
+export default class ProductRepositoryImplent implements ProductRepository {
     private productApi: ProductApi;
 
     constructor(@inject("ProductApi") productApi: ProductApi) {
         this.productApi = productApi;
     }
 
-    getProducts(): Promise<Entity.Product> {
+    getProducts(): Promise<Entity.Product[]> {
         return this.productApi.getProducts();
     }
 }

@@ -1,17 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Search_Product() {
-    return (
-        <Container>
-            <Wrap>
-                <input type="text" placeholder="Search Product Name or SKU"></input>
-                <button>Add Product</button>
-            </Wrap>
-        </Container>
-    );
-}
-
 const Container = styled.div`
 
   width: 100%;
@@ -43,3 +32,14 @@ const Wrap = styled.div`
     justify-content: space-between;
     width: 100%;
 `;
+
+export default function Search_Product() {
+    return (
+        <Container>
+            <Wrap>
+                <input type="text" placeholder="Search Product Name or SKU"></input>
+                <button>Add Product</button>
+            </Wrap>
+        </Container>
+    );
+}
