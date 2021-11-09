@@ -11,7 +11,7 @@ export default class UserViewModelImpl implements UserViewModel {
         this.getProducts = getProducts;
     }
 
-    clickUser(): Promise<Entity.Product[]> {
+    list(): Promise<Entity.Product[]> {
         return this.getProducts.execute();
     }
 }

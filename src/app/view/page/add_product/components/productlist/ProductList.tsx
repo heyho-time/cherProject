@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Items from './Items';
+import container from "injector";
+import {UserViewModel} from '../../../../../view-model/';
 
 const BackGround = styled.div`
     margin: 0 64px;
@@ -22,7 +24,30 @@ const Column = styled.div`
     align-items: center;
     width: 600px;
 `;
-export default function ProductList() {
+
+const ProductList :React.FC=()=> {
+    const [productList, setProductList] = useState([]);
+
+    const vm: UserViewModel = container.get<UserViewModel>("UserViewModel");
+    // const test = () => {
+    //     vm.clickUser()
+    //         .then((product:any)=>{
+    //             setProductList(product);
+    //         })
+    //         .catch(()=>{
+    //             alert("error");
+    //         });
+    // };
+    useEffect(() => {
+         vm.list()
+            .then((product:any)=>{
+                setProductList(product);
+            })
+            .catch(()=>{
+                alert("error");
+            });
+      }, []);
+
     return (
         <BackGround>
                 <TableHead>
@@ -30,7 +55,12 @@ export default function ProductList() {
                     <Column>Quantity</Column>
                     <Column>Category</Column>
                 </TableHead>
-                <Items />
+                {productList.map(({title, image, productDetail}, idx) => {
+                    return(
+                        <Items key={idx} title={title} image={image} productDetail={productDetail} />
+                    );
+                })}
         </BackGround>
     );
-}
+};
+export default ProductList;

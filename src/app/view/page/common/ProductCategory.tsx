@@ -31,7 +31,7 @@ const ProductCategory :React.FC= () => {
     const vm: UserViewModel = container.get<UserViewModel>("UserViewModel");
 
     const test = () => {
-        vm.clickUser()
+        vm.list()
             .then((product)=>{
                 console.log(product);
             })

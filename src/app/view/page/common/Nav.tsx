@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import salesIdle from "../../assets/images/sales-idle.png";
+import shoppingCartIdle from '../../assets/images/shopping-cart-idle.png';
+import storeIdle from '../../assets/images/store-idle.png';
 
 const Container = styled.div`
   display: flex;
@@ -15,6 +18,7 @@ const Container = styled.div`
   width: 20px;
   height: 20px;
   margin-bottom: 8px;
+  object-fit: contain;
   }
 
   p {
@@ -51,15 +55,15 @@ const Nav: React.FC = ()=> {
         <Container>
             <ButtonWrap>
                 <Button>
-                    <img alt="" src="../../assets/images/shopping-cart-idle.png" />
+                    <img src={shoppingCartIdle} />
                     <p>Checkout</p>
                 </Button>
                 <Button>
-                    <img alt="" src="../../assets/images/sales-idle.png" />
+                    <img src={salesIdle} />
                     <p>Sales</p>
                 </Button>
                 <Button>
-                    <img alt="" src="../../assets/images/store-idle.png" />
+                    <img src={storeIdle} />
                     <p>Product</p>
                 </Button>
             </ButtonWrap>

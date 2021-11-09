@@ -1,5 +1,5 @@
 import * as Entity from "domain/entity";
 
 export interface UserViewModel {
-    clickUser: () => Promise<Entity.Product[]>;
+    list: () => Promise<Entity.Product[]>;
 }

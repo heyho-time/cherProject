@@ -7,11 +7,11 @@ import { injectable } from "inversify";
 const products:Entity.Product[] = [
 	{
 		"id": "uuid",
-		"image": ["url", "url", "url"],
+		"image": ["https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg", "url", "url"],
 		"price": 5000,
 		"title": "cookie",
 		"productDetail": {
-						"description": "asdfasdfa",
+			"description": "asdfasdfa",
 			"categoryIds": [1, 2],
 			"inventory": { "stock": 420, "sku": "SKUT"},
 			"avail": 20,
@@ -31,10 +31,10 @@ const products:Entity.Product[] = [
 					}
 	},
 	 {
-		"id": "uuid",
-		"image": ["url", "url", "url"],
+		"id": "oopp",
+		"image": ["https://www.history.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc3OTk5Njc1MTU5MjI1OTY1/valentines-day-chocolate-gettyimages-923430892.jpg", "url", "url"],
 		"price": 5000,
-		"title": "cookie",
+		"title": "chocolate",
 		"productDetail": {
 						"description": "asdfasdfa",
 			"categoryIds": [1, 2],
@@ -59,7 +59,8 @@ const products:Entity.Product[] = [
 
 @injectable()
 export default class ProductApiImpl implements ProductApi {
-    getProducts(): Promise<Entity.Product[]> {
+    
+	getProducts(): Promise<Entity.Product[]> {
         return new Promise((resolve) => {
             const product : Entity.Product[] = products;
 
