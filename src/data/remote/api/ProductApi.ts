@@ -59,8 +59,7 @@ const products:Entity.Product[] = [
 
 @injectable()
 export default class ProductApiImpl implements ProductApi {
-    
-	getProducts(): Promise<Entity.Product[]> {
+    getProducts(): Promise<Entity.Product[]> {
         return new Promise((resolve) => {
             const product : Entity.Product[] = products;
 
