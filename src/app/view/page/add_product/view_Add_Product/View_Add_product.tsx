@@ -6,19 +6,19 @@ import ProductCategory from '../../common/ProductCategory';
 import Search_Product from '../components/Search_Product';
 import ProductList from '../components/productlist/ProductList';
 import container from "injector";
-import {UserViewModel} from '../../../../view-model';
+import {ProductViewModel} from '../../../../view-model';
 
 const BackGround = styled.div`
     background-color: #f7f7f7;
     padding-bottom: 100px;
 `;
 
-const vm: UserViewModel = container.get<UserViewModel>("UserViewModel");
+const vm: ProductViewModel = container.get<ProductViewModel>("ProductViewModel");
 
 export default function View_Add_product() {
     const [products, setProducts] = useState<Entity.Product[]>([]);
     const [searchedItem, setSearchedItem] = useState<string>("");
-    // const [filteredProducts, setFilteredProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState<Entity.Product[]>([]);
 
     useEffect(() => {
          vm.list()
@@ -32,9 +32,10 @@ export default function View_Add_product() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchedItem(e.target.value);
+        setFilteredProducts(products.filter((item:Entity.Product): boolean => item.title.toLowerCase().includes(searchedItem.toLowerCase())));
     };
-    const filteredProducts = products.filter((item) => {return item.title.toLowerCase().includes(searchedItem.toLowerCase());});
-   console.log(filteredProducts);
+
+console.log(filteredProducts);
 
     return (
         <BackGround>

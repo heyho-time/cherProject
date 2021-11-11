@@ -38,10 +38,10 @@ const Wrap = styled.div`
 
 interface ChangeInput {
     handleChange:(e: React.ChangeEvent<HTMLInputElement>) => void;
-    // filteredProducts: <Entity.Product[];>;
+    filteredProducts: Entity.Product[];
 }
 
-const Search_Product:React.FC<ChangeInput>;({handleChange, filteredProducts}) {
+const Search_Product:React.FC<ChangeInput>=({handleChange, filteredProducts} : ChangeInput) =>{
 
     return (
         <Container>
