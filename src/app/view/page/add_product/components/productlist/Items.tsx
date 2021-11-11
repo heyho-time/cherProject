@@ -13,6 +13,7 @@ const List = styled.div`
         margin: 0 20px;
         width: 50px;
         height: 50px;
+        object-fit: cover;
     }
 `;
 
@@ -22,12 +23,12 @@ const Column = styled.div`
     width: 600px;
 `;
 
-export default function Items() {
+export default function Items({title, image, productDetail}) {
     return (
     <List>
-        <img src=""/>
-        <Column>Product Name</Column>
-        <Column>Quantity</Column>
+        <img src={`${image[0]}`}/>
+        <Column>{title}</Column>
+        <Column>{productDetail.inventory.stock}</Column>
         <Column>Category</Column>
     </List>
     );

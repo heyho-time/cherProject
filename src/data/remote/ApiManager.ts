@@ -43,8 +43,8 @@ authClient.interceptors.request.use((config: AxiosRequestConfig) => {
         }
     } else {
         const err: AxiosError = {
-            name: "NoUserKey",
-            message: "NoUserKey",
+            name: "NoProductKey",
+            message: "NoProductKey",
             config: config,
             isAxiosError: true,
             toJSON: () => ({})

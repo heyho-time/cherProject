@@ -1,6 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import Items from './Items';
+import * as Entity from "domain/entity";
+
+interface ProductList {
+    products: Entity.Product[];
+}
 
 const BackGround = styled.div`
     margin: 0 64px;
@@ -22,7 +27,9 @@ const Column = styled.div`
     align-items: center;
     width: 600px;
 `;
-export default function ProductList() {
+
+const ProductList :React.FC<ProductList>=({products})=> {
+
     return (
         <BackGround>
                 <TableHead>
@@ -30,7 +37,12 @@ export default function ProductList() {
                     <Column>Quantity</Column>
                     <Column>Category</Column>
                 </TableHead>
-                <Items />
+                {products.map(({title, image, productDetail}, idx) => {
+                    return(
+                        <Items key={idx} title={title} image={image} productDetail={productDetail} />
+                    );
+                })}
         </BackGround>
     );
-}
+};
+export default ProductList;
