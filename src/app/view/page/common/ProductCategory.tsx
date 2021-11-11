@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import container from "injector";
-import {UserViewModel} from '../../../view-model';
 
 const Wrap = styled.div`
   display: flex;
@@ -28,21 +26,9 @@ const Wrap = styled.div`
 
 const ProductCategory :React.FC= () => {
 
-    const vm: UserViewModel = container.get<UserViewModel>("UserViewModel");
-
-    const test = () => {
-        vm.list()
-            .then((product)=>{
-                console.log(product);
-            })
-            .catch(()=>{
-                alert("error");
-            });
-    };
-
     return (
         <Wrap>
-            <div onClick={test}>Product</div>
+            <div>Product</div>
             <div>Category</div>
         </Wrap>
     );

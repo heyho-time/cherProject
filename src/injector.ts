@@ -1,6 +1,6 @@
 import { Container } from "inversify";
-import { UserViewModel } from "app/view-model";
-import UserViewModelImplement from "app/view-model/implementation/UserViewModel";
+import { ProductViewModel } from "app/view-model";
+import ProductViewModelImplement from "app/view-model/implementation/ProductViewModel";
 
 import { UCGetProducts } from "domain/use-case";
 import UCGetProductImplement from "domain/use-case/products/GetProducts";
@@ -14,7 +14,7 @@ import ProductApiImplement from "data/remote/api/ProductApi";
 const container = new Container();
 
 /* view model */
-container.bind<UserViewModel>("UserViewModel").to(UserViewModelImplement);
+container.bind<ProductViewModel>("ProductViewModel").to(ProductViewModelImplement);
 
 /* use case */
 container.bind<UCGetProducts>("UCGetProducts").to(UCGetProductImplement);

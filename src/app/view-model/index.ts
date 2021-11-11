@@ -1,5 +1,5 @@
 import * as Entity from "domain/entity";
 
-export interface UserViewModel {
-    list: () => Promise<Entity.Product[]>;
+export interface ProductViewModel {
+    list() : Promise<Entity.Product[]>;
 }

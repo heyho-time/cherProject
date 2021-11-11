@@ -1,8 +1,11 @@
-import React,{useState, useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Items from './Items';
-import container from "injector";
-import {UserViewModel} from '../../../../../view-model/';
+import * as Entity from "domain/entity";
+
+interface ProductList {
+    products: Entity.Product[];
+}
 
 const BackGround = styled.div`
     margin: 0 64px;
@@ -25,28 +28,7 @@ const Column = styled.div`
     width: 600px;
 `;
 
-const ProductList :React.FC=()=> {
-    const [productList, setProductList] = useState([]);
-
-    const vm: UserViewModel = container.get<UserViewModel>("UserViewModel");
-    // const test = () => {
-    //     vm.clickUser()
-    //         .then((product:any)=>{
-    //             setProductList(product);
-    //         })
-    //         .catch(()=>{
-    //             alert("error");
-    //         });
-    // };
-    useEffect(() => {
-         vm.list()
-            .then((product:any)=>{
-                setProductList(product);
-            })
-            .catch(()=>{
-                alert("error");
-            });
-      }, []);
+const ProductList :React.FC<ProductList>=({products})=> {
 
     return (
         <BackGround>
@@ -55,7 +37,7 @@ const ProductList :React.FC=()=> {
                     <Column>Quantity</Column>
                     <Column>Category</Column>
                 </TableHead>
-                {productList.map(({title, image, productDetail}, idx) => {
+                {products.map(({title, image, productDetail}, idx) => {
                     return(
                         <Items key={idx} title={title} image={image} productDetail={productDetail} />
                     );

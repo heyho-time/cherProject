@@ -1,10 +1,10 @@
 import * as Entity from "domain/entity";
 import { inject, injectable } from "inversify";
 import { UCGetProducts } from "domain/use-case";
-import { UserViewModel } from "app/view-model";
+import { ProductViewModel } from "app/view-model";
 
 @injectable()
-export default class UserViewModelImpl implements UserViewModel {
+export default class UserViewModelImpl implements ProductViewModel {
     private getProducts: UCGetProducts;
 
     constructor(@inject("UCGetProducts") getProducts: UCGetProducts) {
