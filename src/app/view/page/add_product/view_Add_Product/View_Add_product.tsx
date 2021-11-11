@@ -17,7 +17,6 @@ const vm: ProductViewModel = container.get<ProductViewModel>("ProductViewModel")
 
 export default function View_Add_product() {
     const [products, setProducts] = useState<Entity.Product[]>([]);
-    const [searchedItem, setSearchedItem] = useState<string>("");
     const [filteredProducts, setFilteredProducts] = useState<Entity.Product[]>([]);
 
     useEffect(() => {
@@ -28,20 +27,21 @@ export default function View_Add_product() {
             .catch(()=>{
                 alert("error");
             });
-      }, []);
+      },[]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchedItem(e.target.value);
-        setFilteredProducts(products.filter((item:Entity.Product): boolean => item.title.toLowerCase().includes(searchedItem.toLowerCase())));
+        const a = e.target.value;
+        a.length&&setFilteredProducts(products.filter((item:Entity.Product): boolean =>item.title.toLowerCase().includes(a.toLowerCase())));
     };
-
-console.log(filteredProducts);
 
     return (
         <BackGround>
             <Nav />
             <ProductCategory />
-            <Search_Product handleChange={handleChange} filteredProducts={filteredProducts} />
+            <Search_Product
+                handleChange={handleChange}
+                filteredProducts={filteredProducts}
+                />
             <ProductList products={products}/>
         </BackGround>
     );

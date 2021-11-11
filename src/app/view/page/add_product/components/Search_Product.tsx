@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
-import SearchedItem from './comp.SearchedItem/SearchedItem';
 import * as Entity from "domain/entity";
 
 const Container = styled.div`
@@ -36,6 +35,8 @@ const Wrap = styled.div`
     width: 100%;
 `;
 
+const SearchedItem = styled.div``;
+
 interface ChangeInput {
     handleChange:(e: React.ChangeEvent<HTMLInputElement>) => void;
     filteredProducts: Entity.Product[];
@@ -47,7 +48,9 @@ const Search_Product:React.FC<ChangeInput>=({handleChange, filteredProducts} : C
         <Container>
             <Wrap>
                 <input onChange={handleChange} type="text" placeholder="Search Product Name or SKU"></input>
-                <SearchedItem filteredProducts={filteredProducts}/>
+                {filteredProducts.map(()=>{<SearchedItem>
+
+                </SearchedItem>})}
                 <Link to="/add_new_product"><button>Add Product</button></Link>
             </Wrap>
         </Container>
