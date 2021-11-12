@@ -7,6 +7,25 @@ interface ProductList {
     products: Entity.Product[];
 }
 
+const ProductList :React.FC<ProductList>=({products})=> {
+
+    return (
+        <BackGround>
+                <TableHead>
+                    <Column>Product Name</Column>
+                    <Column>Quantity</Column>
+                    <Column>Category</Column>
+                </TableHead>
+                {products.map((product) => {
+                    return(
+                        <Items key={product.id} product={product} />
+                    );
+                })}
+        </BackGround>
+    );
+};
+export default ProductList;
+
 const BackGround = styled.div`
     margin: 0 64px;
     border-radius: 5px;
@@ -27,22 +46,3 @@ const Column = styled.div`
     align-items: center;
     width: 600px;
 `;
-
-const ProductList :React.FC<ProductList>=({products})=> {
-
-    return (
-        <BackGround>
-                <TableHead>
-                    <Column>Product Name</Column>
-                    <Column>Quantity</Column>
-                    <Column>Category</Column>
-                </TableHead>
-                {products.map((product) => {
-                    return(
-                        <Items key={product.id} product={product} />
-                    );
-                })}
-        </BackGround>
-    );
-};
-export default ProductList;

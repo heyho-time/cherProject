@@ -1,6 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Head=()=> {
+    return (
+        <Container>
+            <p>Add New Product</p>
+            <div>
+                <CancelBtn>Cancel</CancelBtn>
+                <SaveBtn>Save</SaveBtn>
+            </div>
+        </Container>
+    );
+};
+
+export default Head;
+
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
@@ -41,17 +55,3 @@ const SaveBtn = styled.button`
     background-color: #e0e0e3;
     color: white;
 `;
-
-const Head=()=> {
-    return (
-        <Container>
-            <p>Add New Product</p>
-            <div>
-                <CancelBtn>Cancel</CancelBtn>
-                <SaveBtn>Save</SaveBtn>
-            </div>
-        </Container>
-    );
-};
-
-export default Head;

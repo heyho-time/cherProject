@@ -1,6 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Inventory= ()=> {
+    return (
+        <Container>
+            <h3>Inventory</h3>
+            <div>
+                <InputWrap>
+                    <p>SKU (Stock Keeping Unit)</p>
+                    <input type="text" />
+                </InputWrap>
+                <InputWrap>
+                    <p>Available</p>
+                    <input type="text" />
+                </InputWrap>
+            </div>
+            <CheckBox>
+                <input type="checkbox" />
+                <p>Continue selling when out of stock</p>
+            </CheckBox>
+        </Container>
+    );
+};
+
+export default Inventory;
+
 const Container = styled.div`
   width: 796px;
   margin: 16px 16px 16px 64px;
@@ -54,27 +78,3 @@ const CheckBox = styled.div`
     color: #58606e;
   }
 `;
-
-const Inventory= ()=> {
-    return (
-        <Container>
-            <h3>Inventory</h3>
-            <div>
-                <InputWrap>
-                    <p>SKU (Stock Keeping Unit)</p>
-                    <input type="text" />
-                </InputWrap>
-                <InputWrap>
-                    <p>Available</p>
-                    <input type="text" />
-                </InputWrap>
-            </div>
-            <CheckBox>
-                <input type="checkbox" />
-                <p>Continue selling when out of stock</p>
-            </CheckBox>
-        </Container>
-    );
-};
-
-export default Inventory;

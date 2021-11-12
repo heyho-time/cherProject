@@ -1,6 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Product_State= ()=> {
+    return (
+        <Container>
+            <h3>Product State</h3>
+            <CheckBox>
+                <input type="checkbox" />
+                <p>Sold out</p>
+            </CheckBox>
+        </Container>
+    );
+};
+
+export default Product_State;
+
 const Container = styled.div`
   width: 340px;
   margin: 39px 64px 16px 16px;
@@ -29,17 +43,3 @@ const CheckBox = styled.div`
     color: #58606e;
   }
 `;
-
-const Product_State= ()=> {
-    return (
-        <Container>
-            <h3>Product State</h3>
-            <CheckBox>
-                <input type="checkbox" />
-                <p>Sold out</p>
-            </CheckBox>
-        </Container>
-    );
-};
-
-export default Product_State;

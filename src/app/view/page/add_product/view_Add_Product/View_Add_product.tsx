@@ -3,15 +3,10 @@ import * as Entity from "domain/entity";
 import styled from 'styled-components';
 import Nav from '../../common/Nav';
 import ProductCategory from '../../common/ProductCategory';
-import Search_Product from '../components/Search_Product';
-import ProductList from '../components/productlist/ProductList';
+import Search_Product from './components/Search_Product';
+import ProductList from './components/productlist/ProductList';
 import container from "injector";
 import {ProductViewModel} from '../../../../view-model';
-
-const BackGround = styled.div`
-    background-color: #f7f7f7;
-    padding-bottom: 100px;
-`;
 
 const vm: ProductViewModel = container.get<ProductViewModel>("ProductViewModel");
 
@@ -39,3 +34,8 @@ export default function View_Add_product() {
         </BackGround>
     );
 }
+
+const BackGround = styled.div`
+    background-color: #f7f7f7;
+    padding-bottom: 100px;
+`;

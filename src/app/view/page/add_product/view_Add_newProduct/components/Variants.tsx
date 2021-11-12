@@ -1,6 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Variants = () => {
+    return (
+        <Container>
+            <h3>Variants</h3>
+            <CheckBox>
+                <input type="checkbox" />
+                <p>This product has multiple options, like different sizes or colors</p>
+            </CheckBox>
+        </Container>
+    );
+};
+
+export default Variants;
+
 const Container = styled.div`
   width: 796px;
   margin: 16px 16px 0 64px;
@@ -29,17 +43,3 @@ const CheckBox = styled.div`
     color: #58606e;
   }
 `;
-
-const Variants = () => {
-    return (
-        <Container>
-            <h3>Variants</h3>
-            <CheckBox>
-                <input type="checkbox" />
-                <p>This product has multiple options, like different sizes or colors</p>
-            </CheckBox>
-        </Container>
-    );
-};
-
-export default Variants;

@@ -9,26 +9,6 @@ import Variants from './components/Variants';
 import Product_State from './components/Product_State';
 import Category from './components/Category';
 
-const Container = styled.div`
-    padding-bottom: 50px;
-    width:100%;
-    height:100%;
-    background-color: #f7f7f7;
-
-h3 {
-    margin: 0 0 2px 0;
-        font-family: NanumSquare_acB;
-        font-size: 16px;
-        color: #374554;
-}
-`;
-
-const ProductInfo = styled.div`
-    display: flex;
-    justify-content: center;
-    padding: 0 auto;
-`;
-
 const view_Add_newProduct=()=> {
     return (
         <Container>
@@ -51,3 +31,23 @@ const view_Add_newProduct=()=> {
 };
 
 export default view_Add_newProduct;
+
+const Container = styled.div`
+    padding-bottom: 50px;
+    width:100%;
+    height:100%;
+    background-color: #f7f7f7;
+
+h3 {
+    margin: 0 0 2px 0;
+        font-family: NanumSquare_acB;
+        font-size: 16px;
+        color: #374554;
+}
+`;
+
+const ProductInfo = styled.div`
+    display: flex;
+    justify-content: center;
+    padding: 0 auto;
+`;

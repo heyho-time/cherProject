@@ -3,6 +3,35 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import * as Entity from "domain/entity";
 
+interface SearchProductProps {
+    productList : Entity.Product[];
+}
+
+const Search_Product:React.FC<SearchProductProps>=(props) =>{
+    const [keyword,setKeyword] = React.useState<string>("");
+
+    const searched = props.productList.filter((product)=> product.title.includes(keyword));
+
+    useEffect(()=>{
+        window.addEventListener("click", ()=>{setKeyword("");});
+    },[]);
+
+    return (
+        <Container>
+            <Wrap>
+                <input value={keyword} onChange={(e)=> {setKeyword(e.target.value);}}/>
+                {keyword ? (
+                  <SearchedBox>
+                    {searched.map((item) => {return <SearchedItem key={item.id}>{item.title}</SearchedItem>;})}
+                  </SearchedBox>) : (null)}
+                <Link to="/add_new_product"><button>Add Product</button></Link>
+            </Wrap>
+        </Container>
+    );
+};
+
+export default Search_Product;
+
 const Container = styled.div`
 
   width: 100%;
@@ -59,35 +88,3 @@ const SearchedItem = styled.div`
   color: #374554;
   background-color: white;
 `;
-
-interface SearchProductProps {
-    productList : Entity.Product[];
-}
-
-const Search_Product:React.FC<SearchProductProps>=(props) =>{
-    const [keyword,setKeyword] = React.useState<string>("");
-
-    const searched = props.productList.filter((product)=> product.title.includes(keyword));
-
-    console.log("keyword", keyword);
-    console.log(searched);
-
-    useEffect(()=>{
-        window.addEventListener("click", ()=>{setKeyword("")});
-    },[]);
-
-    return (
-        <Container>
-            <Wrap>
-                <input value={keyword} onChange={(e)=> {setKeyword(e.target.value);}}/>
-                {keyword ? (
-                  <SearchedBox>
-                    {searched.map((item) => {return <SearchedItem key={item.id}>{item.title}</SearchedItem>;})}
-                  </SearchedBox>) : (null)}
-                <Link to="/add_new_product"><button>Add Product</button></Link>
-            </Wrap>
-        </Container>
-    );
-};
-
-export default Search_Product;
