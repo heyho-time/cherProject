@@ -9,16 +9,22 @@ export interface Product {
     image : string[];
     price : number;
     title : string;
+    categoryIds : number[];
     productDetail: ProductDetail;
 }
 
 export interface ProductDetail {
     description : string;
-    categoryIds : number[];
+    category : Category;
     inventory : Inventory;
     avail: number;
     state: string;
     option: Option[];
+}
+
+export interface Category {
+    id: number;
+    name: string;
 }
 
 export interface Inventory {

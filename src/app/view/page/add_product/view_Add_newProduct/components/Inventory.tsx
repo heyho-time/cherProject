@@ -25,19 +25,34 @@ const InputWrap = styled.div`
     }
 
     input {
-        width: 374px;
+        width: 368px;
         height: 50px;
-        margin: 8px 0 0;
+        margin: 8px 8px 0 0;
         border-radius: 2px;
         border: solid 1px #eaeaea;
-
+        font-size: 18px;
     }
 `;
 
 const CheckBox = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 20px 20px 0 0;
+  display: flex;
+  align-items: center;
+  padding: 20px 20px 0 0;
+
+  input {
+    margin-right: 10px;
+    width: 21px;
+    height: 21px;
+    object-fit: contain;
+  };
+
+  p {
+    width: 300px;
+    height: 18px;
+    font-family: NanumSquare_acR;
+    font-size: 16px;
+    color: #58606e;
+  }
 `;
 
 const Inventory= ()=> {

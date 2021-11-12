@@ -37,9 +37,9 @@ const ProductList :React.FC<ProductList>=({products})=> {
                     <Column>Quantity</Column>
                     <Column>Category</Column>
                 </TableHead>
-                {products.map(({title, image, productDetail}, idx) => {
+                {products.map((product) => {
                     return(
-                        <Items key={idx} title={title} image={image} productDetail={productDetail} />
+                        <Items key={product.id} product={product} />
                     );
                 })}
         </BackGround>
