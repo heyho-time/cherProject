@@ -4,6 +4,29 @@ import salesIdle from "../../assets/images/sales-idle.png";
 import shoppingCartIdle from '../../assets/images/shopping-cart-idle.png';
 import storeIdle from '../../assets/images/store-idle.png';
 
+const Nav: React.FC = ()=> {
+    return (
+        <Container>
+            <ButtonWrap>
+                <Button>
+                    <img src={shoppingCartIdle} />
+                    <p>Checkout</p>
+                </Button>
+                <Button>
+                    <img src={salesIdle} />
+                    <p>Sales</p>
+                </Button>
+                <Button>
+                    <img src={storeIdle} />
+                    <p>Product</p>
+                </Button>
+            </ButtonWrap>
+        </Container>
+    );
+};
+
+export default Nav;
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -49,26 +72,3 @@ const Button = styled.div`
 const ButtonWrap = styled.div`
     display: flex;
 `;
-
-const Nav: React.FC = ()=> {
-    return (
-        <Container>
-            <ButtonWrap>
-                <Button>
-                    <img src={shoppingCartIdle} />
-                    <p>Checkout</p>
-                </Button>
-                <Button>
-                    <img src={salesIdle} />
-                    <p>Sales</p>
-                </Button>
-                <Button>
-                    <img src={storeIdle} />
-                    <p>Product</p>
-                </Button>
-            </ButtonWrap>
-        </Container>
-    );
-};
-
-export default Nav;

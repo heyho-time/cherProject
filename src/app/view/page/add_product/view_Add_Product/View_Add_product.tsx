@@ -3,24 +3,18 @@ import * as Entity from "domain/entity";
 import styled from 'styled-components';
 import Nav from '../../common/Nav';
 import ProductCategory from '../../common/ProductCategory';
-import Search_Product from '../components/Search_Product';
-import ProductList from '../components/productlist/ProductList';
+import Search_Product from './components/Search_Product';
+import ProductList from './components/productlist/ProductList';
 import container from "injector";
 import {ProductViewModel} from '../../../../view-model';
-
-const BackGround = styled.div`
-    background-color: #f7f7f7;
-    padding-bottom: 100px;
-`;
 
 const vm: ProductViewModel = container.get<ProductViewModel>("ProductViewModel");
 
 export default function View_Add_product() {
     const [products, setProducts] = useState<Entity.Product[]>([]);
-    const [filteredProducts, setFilteredProducts] = useState<Entity.Product[]>([]);
 
     useEffect(() => {
-         vm.list()
+         vm.getList()
             .then((item)=>{
                 setProducts(item);
             })
@@ -29,20 +23,19 @@ export default function View_Add_product() {
             });
       },[]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const a = e.target.value;
-        a.length&&setFilteredProducts(products.filter((item:Entity.Product): boolean =>item.title.toLowerCase().includes(a.toLowerCase())));
-    };
-
     return (
         <BackGround>
             <Nav />
             <ProductCategory />
             <Search_Product
-                handleChange={handleChange}
-                filteredProducts={filteredProducts}
+                productList={products}
                 />
             <ProductList products={products}/>
         </BackGround>
     );
 }
+
+const BackGround = styled.div`
+    background-color: #f7f7f7;
+    padding-bottom: 100px;
+`;

@@ -1,5 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import *as Entity from 'domain/entity';
+
+interface ItemsProps {
+    product: Entity.Product;
+}
+
+const Items:React.FC<ItemsProps>= (props)=> {
+    return (
+    <List>
+        <img src={props.product.image[0]}/>
+        <Column>{props.product.title}</Column>
+        <Column>{props.product.productDetail.inventory.stock}</Column>
+        <Column>{props.product.productDetail.category.name}</Column>
+    </List>
+    );
+};
+
+export default Items;
 
 const List = styled.div`
     display: flex;
@@ -22,14 +40,3 @@ const Column = styled.div`
     align-items: center;
     width: 600px;
 `;
-
-export default function Items({title, image, productDetail}) {
-    return (
-    <List>
-        <img src={`${image[0]}`}/>
-        <Column>{title}</Column>
-        <Column>{productDetail.inventory.stock}</Column>
-        <Column>Category</Column>
-    </List>
-    );
-}

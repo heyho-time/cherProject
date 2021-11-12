@@ -1,6 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const ProductCategory :React.FC= () => {
+
+    return (
+        <Wrap>
+            <div>Product</div>
+            <div>Category</div>
+        </Wrap>
+    );
+};
+
+export default ProductCategory;
+
 const Wrap = styled.div`
   display: flex;
   width: 100%;
@@ -23,15 +35,3 @@ const Wrap = styled.div`
   };
   };
 `;
-
-const ProductCategory :React.FC= () => {
-
-    return (
-        <Wrap>
-            <div>Product</div>
-            <div>Category</div>
-        </Wrap>
-    );
-};
-
-export default ProductCategory;

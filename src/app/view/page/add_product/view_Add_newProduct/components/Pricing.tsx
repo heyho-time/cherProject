@@ -1,6 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export default function Pricing() {
+    return (
+        <Container>
+            <h3>Pricing</h3>
+            <InputWrap>
+                <input type="text" placeholder="0" />
+                <div>₩</div>
+            </InputWrap>
+            <CheckBox>
+                <input type="checkbox" />
+                <p>Charge tax on this item(VAT)</p>
+            </CheckBox>
+        </Container>
+    );
+}
+
 const Container = styled.div`
   width: 796px;
   margin: 16px 16px 16px 64px;
@@ -55,19 +71,3 @@ const CheckBox = styled.div`
     color: #58606e;
   }
 `;
-
-export default function Pricing() {
-    return (
-        <Container>
-            <h3>Pricing</h3>
-            <InputWrap>
-                <input type="text" placeholder="0" />
-                <div>₩</div>
-            </InputWrap>
-            <CheckBox>
-                <input type="checkbox" />
-                <p>Charge tax on this item(VAT)</p>
-            </CheckBox>
-        </Container>
-    );
-}

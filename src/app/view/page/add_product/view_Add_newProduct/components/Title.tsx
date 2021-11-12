@@ -1,6 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
+export default function Title() {
+    return (
+        <Container>
+            <h3>Title</h3>
+            <InputTitle type="text" placeholder="very cool product" />
+            <h3>Description</h3>
+            <Description type="text" placeholder="Add product description here." />
+        </Container>
+    );
+}
+
 const Container = styled.div`
     width: 796px;
     height: 470px;
@@ -34,14 +45,3 @@ const Description = styled.input`
   font-size: 16px;
   color: #8a8a8a;
 `;
-
-export default function Title() {
-    return (
-        <Container>
-            <h3>Title</h3>
-            <InputTitle type="text" placeholder="very cool product" />
-            <h3>Description</h3>
-            <Description type="text" placeholder="Add product description here." />
-        </Container>
-    );
-}

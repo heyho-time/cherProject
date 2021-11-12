@@ -9,11 +9,34 @@ import Variants from './components/Variants';
 import Product_State from './components/Product_State';
 import Category from './components/Category';
 
+const view_Add_newProduct=()=> {
+    return (
+        <Container>
+            <Head />
+            <ProductInfo>
+                <div>
+                    <Title />
+                    <Images />
+                    <Pricing />
+                    <Inventory />
+                    <Variants />
+                </div>
+                <div>
+                    <Product_State />
+                    <Category />
+                </div>
+            </ProductInfo>
+        </Container>
+    );
+};
+
+export default view_Add_newProduct;
+
 const Container = styled.div`
-width:100%;
-height:100%;
-padding-bottom: 50px;
-background-color: #f7f7f7;
+    padding-bottom: 50px;
+    width:100%;
+    height:100%;
+    background-color: #f7f7f7;
 
 h3 {
     margin: 0 0 2px 0;
@@ -23,23 +46,8 @@ h3 {
 }
 `;
 
-const view_Add_newProduct=()=> {
-    return (
-        <Container>
-            <div>
-                <Head />
-                <Title />
-                <Images />
-                <Pricing />
-                <Inventory />
-                <Variants />
-            </div>
-            <div>
-                <Product_State />
-                <Category />
-            </div>
-        </Container>
-    );
-};
-
-export default view_Add_newProduct;
+const ProductInfo = styled.div`
+    display: flex;
+    justify-content: center;
+    padding: 0 auto;
+`;

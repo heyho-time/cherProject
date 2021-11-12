@@ -8,7 +8,7 @@
       "readonly-array": false,
       "no-let": false,
       "no-array-mutation": true,
-      "no-use-before-declare": true,
+      "no-use-before-declare": false,
       "radix": true,
       "switch-default": true,
       "triple-equals": [true, "allow-undefined-check", "allow-null-check"],
