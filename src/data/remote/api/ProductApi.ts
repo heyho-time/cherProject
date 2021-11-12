@@ -1,8 +1,6 @@
 import * as Entity from "domain/entity";
 import { ProductApi } from "data/remote";
 import { injectable } from "inversify";
-// import Axios from "axios";
-//import * as ApiManager from "data/remote/ApiManager";
 
 const products:Entity.Product[] = [
 	{
@@ -134,7 +132,7 @@ const products:Entity.Product[] = [
 							}
 						]
 		}
-	},
+	}
 ];
 
 @injectable()
@@ -152,7 +150,16 @@ export default class ProductApiImpl implements ProductApi {
 			// .catch(()=> {
 			// 	reject("error")
 			// })
+        });
+    }
 
+	postAddProductInfo(product : Entity.Product): Promise<Entity.Product> {
+        return new Promise((resolve) => {
+            resolve(product);
+
+            // axios.post('', {
+            //
+            // });
         });
     }
 }

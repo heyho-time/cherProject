@@ -5,20 +5,20 @@ export interface User {
 }
 
 export interface Product {
-    id: string;
-    image: string[];
-    title: string;
-    categoryIds: string[];
-    productDetail: ProductDetail;
+    id : string;
+    image : string[];
+    title : string;
+    categoryIds : string[];
+    productDetail?: ProductDetail;
 }
 
 export interface ProductDetail {
-    price: number;
-    description: string;
-    state: ProductState;
-    option: Option[];
-    inventory: Inventory;
-    category: Category;
+    price : number;
+    description : string;
+    state?: ProductState;
+    option?: Option[];
+    inventory? : Inventory;
+    category?: Category;
 }
 
 export interface ProductState {
@@ -36,6 +36,7 @@ export interface Category {
 export interface Category {
     id: string;
     name: string;
+    productIds?: string[];
 }
 
 export interface Inventory {

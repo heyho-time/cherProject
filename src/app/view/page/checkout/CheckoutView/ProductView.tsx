@@ -25,13 +25,13 @@ const ProductView : React.FC<ProductViewProps> = (props) => {
     const filterProduct = (e : React.ChangeEvent<HTMLInputElement>) => {
         props.getSearchInput(e.target.value);
         const userInput = e.target.value.toLowerCase();
-        const result = userInput ? props.productList.filter(item => item.title.toLowerCase().includes(userInput) || item.productDetail.inventory.sku.toLowerCase().includes(userInput)) : [];
+        const result = userInput ? props.productList.filter(item => item.title.toLowerCase().includes(userInput) || item.productDetail?.inventory?.sku.toLowerCase().includes(userInput)) : [];
         setSearchedItemList(result);
-    }
+    };
 
     const clickAllCategories = () => {
         setShowCategory(!showCategory);
-    }
+    };
 
     useEffect(() => {
         window.addEventListener("click", () => setSearchedItemList([]));
@@ -39,7 +39,7 @@ const ProductView : React.FC<ProductViewProps> = (props) => {
         .then(res => setCategoryList(res));
 
         return () => window.removeEventListener('click', () => setSearchedItemList([]));
-    }, [])
+    }, []);
 
     return (
         <ProductViewContainer>
@@ -55,37 +55,37 @@ const ProductView : React.FC<ProductViewProps> = (props) => {
                         })}
                         </SearchedList>
                     }
-                    
+
                 </SearchArea>
                 <BtnShowCategories onClick={clickAllCategories}>
                     All Categories
                     <CategoryList isVisible={showCategory}>
                         {categoryList.map(item => {
-                            return <CategoryItem key={item.id} onClick={() => props.getCategoryFilteredItems(item.id)}>{item.name}</CategoryItem>
+                            return <CategoryItem key={item.id} onClick={() => props.getCategoryFilteredItems(item.id)}>{item.name}</CategoryItem>;
                         })}
                     </CategoryList>
                 </BtnShowCategories>
             </Header>
-            {props.productList.length ? 
-                <ProductList 
-                    productList={props.productList} 
+            {props.productList.length ?
+                <ProductList
+                    productList={props.productList}
                 /> : <NoResult/>}
         </ProductViewContainer>
-    )
-}
+    );
+};
 
-const ProductViewContainer = styled.div`{
+const ProductViewContainer = styled.div`
     display: flex;
     flex-direction: column;
-}`
+`;
 
-const Header = styled.div`{
+const Header = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 20px 15px;
-}`
+`;
 
-const SearchProduct = styled.input`{
+const SearchProduct = styled.input`
     position: relative;
     width: 300px;
     padding: 12px 18px;
@@ -95,13 +95,13 @@ const SearchProduct = styled.input`{
     font-size: 14px;
     font-family: NanumSquare_acB;
     color: #959595;
-}`
+`;
 
-const SearchArea = styled.div`{
+const SearchArea = styled.div`
     position: relative;
-}`
+`;
 
-const SearchedList = styled.ul`{
+const SearchedList = styled.ul`
     position: absolute;
     top: 50px;
     right: 0;
@@ -109,14 +109,14 @@ const SearchedList = styled.ul`{
     border-radius: 4px;
     background-color: #ffffff;
     box-shadow: 0 2px 12px 2px rgba(0, 0, 0, 0.2);
-}`
+`;
 
-const SearchedItem = styled.li`{
+const SearchedItem = styled.li`
     padding: 16px;
     cursor: pointer;
-}`
+`;
 
-const BtnShowCategories = styled.button`{
+const BtnShowCategories = styled.button`
     position: relative;
     padding: 11px 16px;
     border-radius: 4px;
@@ -125,9 +125,9 @@ const BtnShowCategories = styled.button`{
     color: #fff;
     font-size: 17px;
     cursor: pointer;
-}`
+`;
 
-const CategoryList = styled.ul<{isVisible : boolean}>`{
+const CategoryList = styled.ul<{isVisible : boolean}>`
     position: absolute;
     top: 50px;
     right: 0;
@@ -135,9 +135,9 @@ const CategoryList = styled.ul<{isVisible : boolean}>`{
     border-radius: 4px;
     background-color: #ffffff;
     box-shadow: 0 2px 12px 2px rgba(0, 0, 0, 0.2);
-}`
+`;
 
-const CategoryItem = styled.li`{
+const CategoryItem = styled.li`
     display: flex;
     justify-content: space-between;
     width: 200px;
@@ -149,6 +149,6 @@ const CategoryItem = styled.li`{
         color: #7770ff;
         background-color: #f1f0ff;
     }
-}`
+`;
 
 export default ProductView;

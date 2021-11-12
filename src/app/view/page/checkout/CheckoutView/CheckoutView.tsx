@@ -7,7 +7,6 @@ import container from "injector";
 import {CheckoutViewModel} from '../../../../view-model';
 
 import ProductView from "./ProductView";
-import ProductOptionView from "../ProductOptionView/ProductOptionView";
 import CartView from "../components/Cart/CartView";
 
 const vm: CheckoutViewModel = container.get<CheckoutViewModel>("CheckoutViewModel");
@@ -15,50 +14,48 @@ const vm: CheckoutViewModel = container.get<CheckoutViewModel>("CheckoutViewMode
 const CheckoutView : React.FC = () => {
     const [productList, setProductList] = useState<Entity.Product[]>([]);
     const [searchInputStatus, setSearchInputStatus] = useState<boolean>(false);
-    const [isItemClicked, setIsItemClicked] = useState<boolean>(false);
 
     useEffect(() => {
         vm.getProductList()
         .then(res => {
             setProductList(res);
-   
+
         });
-    }, [searchInputStatus])
+    }, [searchInputStatus]);
 
     const getClickedSearchedProduct = (productId : string) => {
-        setProductList(productList.filter((item) => item.id === productId));   
-    }
+        setProductList(productList.filter((item) => item.id === productId));
+    };
 
     const getSearchInput = (user : string) => {
         if(user.length < 1) {
             setSearchInputStatus(!searchInputStatus);
         }
-    }
+    };
 
     const getCategoryFilteredItems = (categoryId : string) => {
         setProductList(productList.filter(item => item.categoryIds.includes(categoryId)));
-    }
+    };
 
     return (
         <>
             <CheckoutViewContainer>
-                {isItemClicked ? <ProductOptionView /> : 
-                <ProductView 
+            <ProductView
                     productList={productList}
-                    getClickedSearchedProduct={getClickedSearchedProduct} 
-                    getSearchInput={getSearchInput} 
+                    getClickedSearchedProduct={getClickedSearchedProduct}
+                    getSearchInput={getSearchInput}
                     getCategoryFilteredItems={getCategoryFilteredItems}
-                />}
+                />
                 <CartView />
             </CheckoutViewContainer>
         </>
-    )
-}
+    );
+};
 
-const CheckoutViewContainer = styled.div`{
+const CheckoutViewContainer = styled.div`
     display: flex;
     padding: 0 64px 26px 64px;
     background-color: #f7f7f7;
-}`
+`;
 
 export default CheckoutView;

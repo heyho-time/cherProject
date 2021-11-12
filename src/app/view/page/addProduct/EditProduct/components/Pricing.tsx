@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Pricing() {
+const Pricing=()=> {
     return (
         <Container>
             <h3>Pricing</h3>
@@ -15,7 +15,9 @@ export default function Pricing() {
             </CheckBox>
         </Container>
     );
-}
+};
+
+export default Pricing;
 
 const Container = styled.div`
   width: 796px;
