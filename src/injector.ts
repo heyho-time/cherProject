@@ -1,18 +1,17 @@
 import { Container } from "inversify";
 
-import { UserViewModel, ProductViewModel, CheckoutViewModel, ProductOptionViewModel} from "app/view-model";
-import UserViewModelImpl from "app/view-model/implementation/UserViewModel";
-import ProductViewModelImplement from "app/view-model/implementation/ProductViewModel";
-import ProductOptionViewModelImpl from "app/view-model/implementation/ProductOptionViewModel";
-import CheckoutViewModelImpl from "app/view-model/implementation/CheckoutViewModel";
+import { ListProductViewModel, AddProductViewModel } from "app/view-model";
+import AddProductViewModelImpl from "app/view-model/implementation/AddProductViewModel";
+import ListProductViewModelImpl from "app/view-model/implementation/ListProductViewModel";
 
-import { UCPostAccount, UCGetProducts, UCGetCategories, UCPostCartItem, UCGetCartList, UCDeleteCartItem } from "domain/use-case";
+import { UCPostAccount, UCGetProducts, UCGetCategories, UCPostCartItem, UCGetCartList, UCPostProducts, UCDeleteCartItem } from "domain/use-case";
 import UCPostAccountImplement from "domain/use-case/user/PostAccount";
 import UCGetProductImplement from "domain/use-case/products/GetProducts";
 import UCGetCategoriesImpl from "domain/use-case/categories/GetCategories";
 import UCPostCartItemImpl from "domain/use-case/cart/postCartItem";
 import UCGetCartListImpl from "domain/use-case/cart/getCartList";
 import UCDeleteCartItemImpl from "domain/use-case/cart/deleteCartItem";
+import UCPostProductImpl from "domain/use-case/products/PostProducts";
 
 import { CartRepository, CategoryRepository, ProductRepository, UserRepository } from "domain/interactor/repository";
 import UserRepositoryImpl from "data/repository/UserRepository";
@@ -29,10 +28,8 @@ import CartApiImpl from "data/remote/api/CartApi";
 const container = new Container();
 
 /* view model */
-container.bind<UserViewModel>("UserViewModel").to(UserViewModelImpl);
-container.bind<ProductViewModel>("ProductViewModel").to(ProductViewModelImplement);
-container.bind<CheckoutViewModel>("CheckoutViewModel").to(CheckoutViewModelImpl);
-container.bind<ProductOptionViewModel>("ProductOptionViewModel").to(ProductOptionViewModelImpl);
+container.bind<ListProductViewModel>("ListProductViewModel").to(ListProductViewModelImpl);
+container.bind<AddProductViewModel>("AddProductViewModel").to(AddProductViewModelImpl);
 
 /* use case */
 container.bind<UCPostAccount>("UCPostAccount").to(UCPostAccountImplement);
@@ -41,6 +38,7 @@ container.bind<UCGetCategories>("UCGetCategories").to(UCGetCategoriesImpl);
 container.bind<UCPostCartItem>("UCPostCartItem").to(UCPostCartItemImpl);
 container.bind<UCGetCartList>("UCGetCartList").to(UCGetCartListImpl);
 container.bind<UCDeleteCartItem>("UCDeleteCartItem").to(UCDeleteCartItemImpl);
+container.bind<UCPostProducts>("UCPostProducts").to(UCPostProductImpl);
 
 /*repository */
 container.bind<UserRepository>("UserRepository").to(UserRepositoryImpl);

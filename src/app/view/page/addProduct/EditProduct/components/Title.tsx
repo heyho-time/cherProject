@@ -1,16 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default function Title() {
+// interface ProducteTitleProps {
+//   value : string;
+// }
+
+const ProducteTitle :React.FC=()=>  {
+
     return (
         <Container>
             <h3>Title</h3>
-            <InputTitle type="text" placeholder="very cool product" />
+            <InputTitle type="text" placeholder="very cool product" onChange={()=>{}} />
             <h3>Description</h3>
             <Description type="text" placeholder="Add product description here." />
         </Container>
     );
-}
+};
+
+export default ProducteTitle;
 
 const Container = styled.div`
     width: 796px;

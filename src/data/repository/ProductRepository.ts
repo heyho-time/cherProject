@@ -14,4 +14,8 @@ export default class ProductRepositoryImplent implements ProductRepository {
     getProducts(): Promise<Entity.Product[]> {
         return this.productApi.getProducts();
     }
+
+    postAddProductInfo(Product : Entity.Product) : Promise<Entity.Product>{
+        return this.productApi.postAddProductInfo(Product);
+    }
 }

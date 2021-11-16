@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import Items from './Items';
 import * as Entity from "domain/entity";
 
-interface ProductList {
+interface ProductListProps {
     products: Entity.Product[];
+    keyword: string;
 }
 
-const ProductList :React.FC<ProductList>=({products})=> {
+const ProductList :React.FC<ProductListProps>=(props)=> {
 
     return (
         <BackGround>
@@ -16,7 +17,8 @@ const ProductList :React.FC<ProductList>=({products})=> {
                     <Column>Quantity</Column>
                     <Column>Category</Column>
                 </TableHead>
-                {products.map((product) => {
+                {props.products.filter((product)=> product.title.includes(props.keyword))
+                .map((product) => {
                     return(
                         <Items key={product.id} product={product} />
                     );

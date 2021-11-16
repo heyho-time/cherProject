@@ -2,6 +2,7 @@ import * as Entity from "domain/entity";
 
 export interface ProductRepository {
     getProducts(): Promise<Entity.Product[]>;
+    postAddProductInfo(Product : Entity.Product) : Promise<Entity.Product>;
 }
 
 export interface UserRepository {
