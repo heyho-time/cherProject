@@ -13,7 +13,7 @@ export interface UCGetCategories {
 }
 
 export interface UCPostCartItem {
-    execute(product: Entity.Cart): Promise<Entity.Cart>;
+    execute(product: object): Promise<void>;
 }
 
 export interface UCGetCartList {
@@ -21,5 +21,25 @@ export interface UCGetCartList {
 }
 
 export interface UCDeleteCartItem {
-    execute(productId: Entity.Cart): Promise<Entity.Cart>;
+    execute(productId: string): Promise<void>;
+}
+
+export interface UCPostNewCategory {
+    execute(categoryName: object): Promise<object>;
+}
+
+export interface UCPostProductsByCategory {
+    execute(products: object[]): Promise<void>;
+}
+
+export interface UCGetProductsByCategory {
+    execute(categoryId : string): Promise<Entity.Category>;
+}
+
+export interface UCPatchProductsByCategory {
+    execute(products: object): Promise<void>;
+}
+
+export interface UCDeleteCategory {
+    execute(categoryId: string): Promise<void>;
 }

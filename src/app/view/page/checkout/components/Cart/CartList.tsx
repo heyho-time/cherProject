@@ -21,7 +21,7 @@ const CartList : React.FC<CartListInterface> = (props) => {
         const newList = cartList.filter(item => item.id !== cartId);
         setCartList(newList);
 
-        vm.deleteCartItem({"id": cartId})
+        vm.clickDeleteCartItem(cartId)
         .then(res => console.log("삭제 성공"))
         .catch(err => console.log("삭제 실패"));
     }
@@ -33,7 +33,6 @@ const CartList : React.FC<CartListInterface> = (props) => {
     }, []);
 
     useEffect(() => {
-        console.log("Dd");
         let idList : string[] = [];
         cartList.map(item => idList.push(item.id));
 
@@ -55,12 +54,14 @@ const CartList : React.FC<CartListInterface> = (props) => {
                 return <CartItem 
                             key={item.id} 
                             id={item.id} 
-                            image={item.image!} 
-                            title={item.title!} 
-                            price={item.price!} 
-                            quantity={item.quantity!} 
-                            option={item.option!} 
-                            getDeleteItemId={getDeleteItemId} 
+                            productId={item.productId}
+                            image={item.image} 
+                            title={item.title} 
+                            price={item.price} 
+                            quantity={item.quantity} 
+                            stock={item.stock}
+                            option={item.option} 
+                            getDeleteItemId={getDeleteItemId}
                         />;
             }) : <EmptyCart />}
         </CartListContainer>
@@ -68,7 +69,7 @@ const CartList : React.FC<CartListInterface> = (props) => {
 }
 
 const CartListContainer = styled.div`{
-    height: 445px;
+    height: 230px;
     overflow-x: scroll;
 
     scrollbar-width: none;

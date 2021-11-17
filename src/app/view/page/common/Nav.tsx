@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import salesIdle from "../../assets/images/sales-idle.png";
 import shoppingCartIdle from '../../assets/images/shopping-cart-idle.png';
@@ -8,18 +9,24 @@ const Nav: React.FC = ()=> {
     return (
         <Container>
             <ButtonWrap>
-                <Button>
-                    <img src={shoppingCartIdle} />
-                    <p>Checkout</p>
-                </Button>
-                <Button>
-                    <img src={salesIdle} />
-                    <p>Sales</p>
-                </Button>
-                <Button>
-                    <img src={storeIdle} />
-                    <p>Product</p>
-                </Button>
+                <StyledLink to="/checkout">
+                    <Button>
+                        <img src={shoppingCartIdle} />
+                        <p>Checkout</p>
+                    </Button>
+                </StyledLink>
+                <StyledLink to="/">
+                    <Button>
+                        <img src={salesIdle} />
+                        <p>Sales</p>
+                    </Button>
+                </StyledLink>
+                <StyledLink to="/add_product">
+                    <Button>
+                        <img src={storeIdle} />
+                        <p>Product</p>
+                    </Button>
+                </StyledLink>
             </ButtonWrap>
         </Container>
     );
@@ -31,14 +38,13 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 14px 0;
+  padding: 7px 0;
   width: 100%;
-  height: 92px;
   box-shadow: 0 1px 0 0 var(--greyblue-15);
   background-color: #fff;
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 2;
 
   img {
   width: 20px;
@@ -75,3 +81,7 @@ const Button = styled.div`
 const ButtonWrap = styled.div`
     display: flex;
 `;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`

@@ -12,12 +12,13 @@ const NoResult : React.FC = () => {
 const NoResultContainer = styled.div`{
     display: flex;
     justify-content: center;
+    width: 1000px;
+    height: 100%;
     align-items: center;
-    width: 1100px;
-    height: 780px;
     font-family: NanumSquare_acB;
     font-size: 32px;
     color: #e0e0e3;
+    border: 1px solid blue;
 }`
 
 export default NoResult;

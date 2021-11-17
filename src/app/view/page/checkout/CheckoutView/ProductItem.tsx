@@ -34,8 +34,8 @@ const ProductItemContainer = styled.div`{
 }`
 
 const ItemImage = styled.img`{
-    width: 200px;
-    height: 210px;
+    width: 180px;
+    height: 180px;
     object-fit: cover;
     background-color: #f7f7f7;
 }`

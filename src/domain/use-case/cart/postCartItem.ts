@@ -1,4 +1,3 @@
-import * as Entity from "domain/entity";
 import { inject, injectable } from "inversify";
 import { CartRepository } from "domain/interactor/repository";
 import { UCPostCartItem } from "..";
@@ -11,7 +10,7 @@ export default class UCPostCartItemImpl implements UCPostCartItem {
         this.cartRepository = cartRepository;
     }
 
-    execute(product : Entity.Cart): Promise<Entity.Cart> {
+    execute(product : object): Promise<void> {
         return this.cartRepository.postCartItem(product);
     }
 }

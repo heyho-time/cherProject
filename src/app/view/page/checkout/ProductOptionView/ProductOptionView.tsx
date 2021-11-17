@@ -11,12 +11,12 @@ interface ProductOptionLocation {
     itemInfo: Entity.Product;
 }
 
-const ProductOptionView : React.FC<ProductOptionLocation> = (props) => {
-    const locationState = useLocation<ProductOptionLocation>().state.itemInfo;
+const ProductOptionView : React.FC = () => {
+    const locationProps = useLocation<ProductOptionLocation>().state.itemInfo;
     
     return (
         <ProductOptionViewContainer>
-            <ProductOptionBox itemInfo={locationState}/>
+            <ProductOptionBox itemInfo={locationProps}/>
             <CartView />
         </ProductOptionViewContainer>
     )

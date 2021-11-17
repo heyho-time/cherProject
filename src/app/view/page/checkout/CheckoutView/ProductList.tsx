@@ -22,11 +22,9 @@ const ProductList : React.FC<ProductListProps> = (props) => {
 const ProductListContainer = styled.div`{
     display: flex;
     flex-wrap: wrap;
-    width: 1100px;
-    height: 780px;
+    width: 1000px;
     padding: 0 10px;
     overflow-x: scroll;
-
     scrollbar-width: none;
     -ms-overflow-style: none;
 

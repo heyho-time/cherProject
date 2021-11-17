@@ -14,4 +14,24 @@ export default class CategoryRepositoryImplent implements CategoryRepository {
     getCategories(): Promise<Entity.Category[]> {
         return this.categoryApi.getCategories();
     }
+
+    postNewCategory(categoryName: object): Promise<object> {
+        return this.categoryApi.postNewCategory(categoryName);
+    }
+
+    postProductsByCategory(products: object[]): Promise<void> {
+        return this.categoryApi.postProductsByCategory(products);
+    }
+
+    getProductsByCategory(categoryId : string): Promise<Entity.Category> {
+        return this.categoryApi.getProductsByCategory(categoryId);
+    }
+
+    patchProductsByCategory(products: object): Promise<void> {
+        return this.categoryApi.patchProductsByCategory(products);
+    }
+
+    deleteCategory(categoryId: string): Promise<void> {
+        return this.categoryApi.deleteCategory(categoryId);
+    }
 }

@@ -35,7 +35,7 @@ const ProductView : React.FC<ProductViewProps> = (props) => {
 
     useEffect(() => {
         window.addEventListener("click", () => setSearchedItemList([]));
-        vm.getCategory()
+        vm.clickAllCategories()
         .then(res => setCategoryList(res));
 
         return () => window.removeEventListener('click', () => setSearchedItemList([]));
@@ -45,15 +45,15 @@ const ProductView : React.FC<ProductViewProps> = (props) => {
         <ProductViewContainer>
             <Header>
                 <SearchArea>
-                    <SearchProduct placeholder="Search Product Name or SKU" onChange={filterProduct}/>
-                    {props.productList.length &&
+                    <SearchProduct placeholder="Search Product Name or SKU" onChange={filterProduct} />
+                    {searchedItemList.length ?
                         <SearchedList>
                         {searchedItemList.map(item => {
                             return <SearchedItem key={item.id} onClick={() => {
                                 props.getClickedSearchedProduct(item.id);
                             }}>{item.title}</SearchedItem>;
                         })}
-                        </SearchedList>
+                        </SearchedList> : null
                     }
                     
                 </SearchArea>
@@ -77,6 +77,7 @@ const ProductView : React.FC<ProductViewProps> = (props) => {
 const ProductViewContainer = styled.div`{
     display: flex;
     flex-direction: column;
+    height: 89vh;
 }`
 
 const Header = styled.div`{

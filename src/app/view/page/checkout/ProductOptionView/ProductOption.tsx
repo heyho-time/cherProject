@@ -20,17 +20,22 @@ interface ProductOptionInterface {
 const ProductOption : React.FC<ProductOptionInterface> = (props) => {
     const history = useHistory();
     const [ quantity, setQuantity ] = useState<number>(1);
-    const [options, setOptions] = useState({});
+    const [tags, setTags] = useState<object[]>([]);
     
-    const getUserInputs = (e : React.ChangeEvent<HTMLInputElement>) => {
-        setOptions({...options, id: props.itemInfo.id, [e.target.name]: e.target.value });
+    const getSelectedTags = (e : React.ChangeEvent<HTMLInputElement>) => {
+        setTags([...tags, {id: e.target.name, tag: e.target.value}]);
     }
 
     const handleBtnAddClick = () => {
-        console.log(options);
-        // vm.clickAddToCheckout(options)
-        // .then(res => alert("장바구니에 상품이 담겼습니다."))
-        // .catch(err => alert("에러가 발생하였습니다."))
+        const options = {
+            id: props.itemInfo.id,
+            quantity: quantity,
+            option: tags
+        };
+
+        vm.clickAddToCheckout(options)
+        .then(res => alert("장바구니에 상품이 담겼습니다."))
+        .catch(err => alert("에러가 발생하였습니다."))
 
         history.push("/checkout");
     }
@@ -53,9 +58,9 @@ const ProductOption : React.FC<ProductOptionInterface> = (props) => {
                                                     key={tag.id} 
                                                     id={tag.id} 
                                                     groupId={option.id}
-                                                    groupName={option.name as string} 
-                                                    name={tag.name as string} 
-                                                    getUserInputs={getUserInputs} 
+                                                    groupName={option.name} 
+                                                    name={tag.name} 
+                                                    getSelectedTags={getSelectedTags}
                                                 />
                                             )
                                         })}
@@ -66,15 +71,9 @@ const ProductOption : React.FC<ProductOptionInterface> = (props) => {
                     </Row>
                     <Row order="second">
                         <SetCount>
-                            <BtnCount src={minusIcon} onClick={() => {
-                                setQuantity(quantity <= 1 ? 1 : quantity - 1);
-                                setOptions({...options, quantity: quantity - 1});
-                            }} />
+                            <BtnCount src={minusIcon} onClick={() => setQuantity(quantity <= 1 ? 1 : quantity - 1)} />
                             <Count value={quantity} readOnly={true}/>
-                            <BtnCount src={plusIcon} onClick={() => {
-                                setQuantity(quantity + 1);
-                                setOptions({...options, quantity: quantity + 1});
-                            }} />
+                            <BtnCount src={plusIcon} onClick={() => setQuantity(quantity + 1)} />
                         </SetCount>
                     </Row>
                 </SelectOption>
@@ -102,8 +101,8 @@ const ProductOptionContainer = styled.div`{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 1100px;
-    height: 780px;
+    width: 1000px;
+    height: 79vh;
     padding: 20px;
     border-radius: 4px;
     background-color: #ffffff;
@@ -201,8 +200,8 @@ const ImageList = styled.ul`{
     margin-bottom: 10px;
 
     img {
-        width: 92px;
-        height: 92px;
+        width: 80px;
+        height: 80px;
         margin-right: 10px;
         object-fit: cover;
     }

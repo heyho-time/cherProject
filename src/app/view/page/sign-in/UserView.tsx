@@ -25,15 +25,17 @@ const UserView: React.FC = () => {
     const handleSignInClick = () => {
         vm.clickSignIn(inputs)
         .then(res => {
+            console.log(res);
             history.push("/checkout");
         })
         .catch(error => {
+            console.log(error);
             setShowAlert(true);
         });
     }
 
     const {email, password} = inputs;
-    const isBtnActivate = email.includes("@") && password.length > 8;
+    const isBtnActivate = email.includes("@") && password.length > 5;
 
     return (
         <LoginView>

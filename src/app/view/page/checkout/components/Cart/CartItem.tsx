@@ -1,36 +1,57 @@
 import React from "react";
+import { useHistory } from "react-router";
 import styled from "styled-components";
 import * as Entity from "domain/entity";
-
-import productImage from "../../../../assets/images/product.png";
 import deleteIcon from "../../../../assets/images/close-primary.png"
 
 interface CartItemInterface {
     id: string;
-    image: string[];
-    title: string;
-    price: number;
-    quantity: number;
-    option: Entity.Option[];
+    productId?: string;
+    image?: string[];
+    title?: string;
+    price?: number;
+    quantity?: number;
+    stock?: number;
+    option?: Entity.Option[];
     getDeleteItemId(cartId: string): void;
 }
 
 const CartItem : React.FC<CartItemInterface> = (props) => {
+    const history = useHistory();
+
+    const goToEditPage = () => {
+        history.push({
+            pathname: `/edit_option/${props.productId}`,
+            state: {
+                id: props.id,
+                productId: props.productId,
+                image: props.image,
+                title: props.title,
+                options: props.option,
+                stock: props.stock,
+                quantity: props.quantity,
+                price: props.price,
+            }
+        });
+    }
+
     return (
         <CartItemContainer>
-            <ItemImage src={props.image[0]}/>
-            <ItemInfo>
-                <Name>{props.title}</Name>
-                <Option>
-                    {props.option.map((option, index) => {
-                        return <span key={option.id}>{`${option.tag[0].name}${index !== props.option.length - 1 ? " / " : ""}`}</span>
-                    })}
-                </Option>
-            </ItemInfo>
-            <ItemOrder>
-                <Price>{props.price.toLocaleString('en')}￦</Price>
-                <Quantity>Qty: {props.quantity}</Quantity>
-            </ItemOrder>
+            <Column onClick={goToEditPage}>
+                <ItemImage src={props.image&&props.image[0]}/>
+                <ItemInfo>
+                    <Name>{props.title}</Name>
+                    <Option>
+                        {props.option&&props.option.map((option, index) => {
+                            return <span key={option.id}>{`${option.tag[0].name}${index !== (props.option&&props.option.length - 1) ? " / " : ""}`}</span>
+                        })}
+                    </Option>
+                </ItemInfo>
+                <ItemOrder>
+                    <Price>{props.price&&props.price.toLocaleString('en')}￦</Price>
+                    <Quantity>Qty: {props.quantity}</Quantity>
+                </ItemOrder>
+            </Column>
             <BtnDelete onClick={() => props.getDeleteItemId(props.id)}><DeleteIcon src={deleteIcon} /></BtnDelete>
         </CartItemContainer>
     )
@@ -39,6 +60,12 @@ const CartItem : React.FC<CartItemInterface> = (props) => {
 const CartItemContainer = styled.div`{
     display: flex;
     margin: 15px;
+    cursor: pointer;
+}`
+
+const Column = styled.div`{
+    display: flex;
+    width: 100%;
 }`
 
 const ItemImage = styled.img`{

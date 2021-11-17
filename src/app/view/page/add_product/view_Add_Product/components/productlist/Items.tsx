@@ -12,7 +12,7 @@ const Items:React.FC<ItemsProps>= (props)=> {
         <img src={props.product.image[0]}/>
         <Column>{props.product.title}</Column>
         <Column>{props.product.productDetail.inventory.stock}</Column>
-        <Column>{props.product.productDetail.category.name}</Column>
+        <Column>{props.product.productDetail.price}</Column>
     </List>
     );
 };

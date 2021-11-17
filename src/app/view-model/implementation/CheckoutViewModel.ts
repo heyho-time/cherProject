@@ -21,7 +21,7 @@ export default class CheckoutViewModelImpl implements CheckoutViewModel {
         this.deleteCart = deleteCart;
     }
 
-    getCategory(): Promise<Entity.Category[]> {
+    clickAllCategories(): Promise<Entity.Category[]> {
         return this.getCategories.execute();
     }
 
@@ -33,7 +33,7 @@ export default class CheckoutViewModelImpl implements CheckoutViewModel {
         return this.getCart.execute();
     }
     
-    deleteCartItem(productId: Entity.Cart): Promise<Entity.Cart> {
+    clickDeleteCartItem(productId: string): Promise<void> {
         return this.deleteCart.execute(productId);
     }
 }

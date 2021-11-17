@@ -18,7 +18,6 @@ export interface ProductDetail {
     state: ProductState;
     option: Option[];
     inventory: Inventory;
-    category: Category;
 }
 
 export interface ProductState {
@@ -30,12 +29,7 @@ export interface ProductState {
 export interface Category {
     id: string;
     name: string;
-    productIds?: string[];
-}
-
-export interface Category {
-    id: string;
-    name: string;
+    products?: Product[];
 }
 
 export interface Inventory {
@@ -45,21 +39,22 @@ export interface Inventory {
 
 export interface Option {
     id: string;
-    name?: string;
+    name: string;
     tag: Tag[];
 }
 
 export interface Tag {
     id: string;
-    name?: string;
+    name: string;
 }
 
 export interface Cart {
     id: string;
-    productId?: string;
-    image?: string[];
-    title?: string;
-    price?: number;
-    quantity?: number;
-    option?: Option[];
+    productId: string;
+    image: string[];
+    title: string;
+    price: number;
+    quantity: number;
+    stock: number;
+    option: Option[];
 }

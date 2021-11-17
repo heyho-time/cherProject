@@ -6,13 +6,13 @@ interface OptionTagProps {
     groupId : string;
     groupName : string;
     name : string;
-    getUserInputs(e:React.ChangeEvent<HTMLInputElement>):void;
+    getSelectedTags(e:React.ChangeEvent<HTMLInputElement>): void;
 }
 
 const OptionTag : React.FC<OptionTagProps> = (props) => {
     return (
         <>
-            <RadioButton type="radio" id={props.name} value={props.name} name={props.groupName} onChange={props.getUserInputs}/>
+            <RadioButton type="radio" id={props.name} value={props.id} name={props.groupId} onChange={props.getSelectedTags}/>
             <TagLabel htmlFor={props.name}>{props.name}</TagLabel>
         </>
     )

@@ -11,7 +11,7 @@ export default class CartRepositoryImpl implements CartRepository {
         this.cartApi = cartApi;
     }
 
-    postCartItem(product : Entity.Cart): Promise<Entity.Cart> {
+    postCartItem(product : object): Promise<void> {
         return this.cartApi.postCartItem(product);
     }
 
@@ -19,7 +19,7 @@ export default class CartRepositoryImpl implements CartRepository {
         return this.cartApi.getCartList();
     }
 
-    deleteCartItem(productId : Entity.Cart): Promise<Entity.Cart> {
+    deleteCartItem(productId : string): Promise<void> {
         return this.cartApi.deleteCartItem(productId);
     }
 }

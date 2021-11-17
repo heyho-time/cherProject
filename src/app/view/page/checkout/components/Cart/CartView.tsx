@@ -2,20 +2,39 @@ import React, {useState} from "react";
 import styled from "styled-components";
 
 import CartBox from "./CartBox";
-import EditProduct from "./EditProduct";
 import CompleteOrder from "./CompleteOrder";
+import * as Entity from "domain/entity";
 
 const CartView : React.FC = () => {
-    const [isClearBtnClicked, setisClearBtnClicked] = useState(false);
+    const [ isClearBtnClicked, setisClearBtnClicked ] = useState(false);
+    const [cartList, setCartList] = useState<Entity.Cart[]>([]);
+    const [ isbtnCheckoutClicked, setIsBtnCheckoutClicked ] = useState<boolean>(false);
+
+
+    const getCartList = (cartList : Entity.Cart[]) => {
+        setCartList(cartList);
+    }
+    
+    const clickBtnCheckout = () => {
+        // alert("주문이 완료되었습니다.");
+        // setCartList([]);
+        // window.location.replace('/checkout');
+        setIsBtnCheckoutClicked(true);
+    }
 
     return (
         <CartViewContainer>
             <Header>
                 <BtnClear onClick={() =>setisClearBtnClicked(true)}>Clear</BtnClear>
             </Header>
-            <CartBox isClearBtnClicked={isClearBtnClicked}/>
-            {/* <EditProduct /> */}
-            {/* <CompleteOrder /> */}
+            {isbtnCheckoutClicked ? 
+                <CompleteOrder cartList={cartList}/> : 
+                <CartBox 
+                    isClearBtnClicked={isClearBtnClicked} 
+                    getCartList={getCartList}
+                    clickBtnCheckout={clickBtnCheckout}
+                />
+            }
         </CartViewContainer>
     )
 }
@@ -23,8 +42,9 @@ const CartView : React.FC = () => {
 const CartViewContainer = styled.div`{
     display: flex;
     flex-direction: column;
+    height: 88vh;
     flex: 1;
-    margin-left: 10px;
+    padding-right: 20px;
 }`
 
 const Header = styled.div`{

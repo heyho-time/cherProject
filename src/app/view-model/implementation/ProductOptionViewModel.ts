@@ -12,7 +12,7 @@ export default class ProductOptionViewModelImpl implements ProductOptionViewMode
         this.postCartItem = postCartItem;
     }
 
-    clickAddToCheckout(product : Entity.Cart): Promise<Entity.Cart> {
+    clickAddToCheckout(product : object): Promise<void> {
        return this.postCartItem.execute(product);
     }
 }

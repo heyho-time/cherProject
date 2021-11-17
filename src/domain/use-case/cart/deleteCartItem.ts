@@ -1,4 +1,3 @@
-import * as Entity from "domain/entity";
 import { inject, injectable } from "inversify";
 import { CartRepository } from "domain/interactor/repository";
 import { UCDeleteCartItem } from "..";
@@ -11,7 +10,7 @@ export default class UCDeleteCartItemImpl implements UCDeleteCartItem {
         this.cartRepository = cartRepository;
     }
 
-    execute(productId : Entity.Cart): Promise<Entity.Cart> {
+    execute(productId : string): Promise<void> {
         return this.cartRepository.deleteCartItem(productId);
     }
 }

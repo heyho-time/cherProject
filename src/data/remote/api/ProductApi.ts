@@ -13,7 +13,6 @@ const products:Entity.Product[] = [
 		"productDetail": {
 			"price": 5000,
 			"description": "A versatile, double stacked patch cable. For eurorack use only.",
-			"category" : { "id" : "1" , "name" : "쿠키"},
 			"inventory": { "stock": 420, "sku": "SKUA"},
 			"state": {"tax" : true, "soldOut" : false, "avail" : 20},
 			"option": [
@@ -38,7 +37,6 @@ const products:Entity.Product[] = [
 		"productDetail": {
 			"price": 5000,
 			"description": "A versatile, double stacked patch cable. For eurorack use only.",
-			"category": { "id": "2", "name":"초콜릿"},
 			"inventory": { "stock": 420, "sku": "SKUB"},
 			"state": {"tax" : false, "soldOut" : false, "avail" : 10},
 						"option": [
@@ -68,7 +66,6 @@ const products:Entity.Product[] = [
 		"productDetail": {
 			"price": 5000,
 			"description": "A versatile, double stacked patch cable. For eurorack use only.",
-			"category" : { "id" : "1" , "name" : "쿠키"},
 			"inventory": { "stock": 420, "sku": "SKUA"},
 			"state": {"tax" : true, "soldOut" : false, "avail" : 20},
 			"option": [
@@ -93,7 +90,6 @@ const products:Entity.Product[] = [
 		"productDetail": {
 			"price": 5000,
 			"description": "A versatile, double stacked patch cable. For eurorack use only.",
-			"category": { "id": "2", "name":"초콜릿"},
 			"inventory": { "stock": 420, "sku": "SKUB"},
 			"state": {"tax" : false, "soldOut" : false, "avail" : 10},
 						"option": [
@@ -118,7 +114,6 @@ const products:Entity.Product[] = [
 		"productDetail": {
 			"price": 5000,
 			"description": "A versatile, double stacked patch cable. For eurorack use only.",
-			"category" : { "id" : "1" , "name" : "쿠키"},
 			"inventory": { "stock": 420, "sku": "SKUA"},
 			"state": {"tax" : true, "soldOut" : false, "avail" : 20},
 			"option": [

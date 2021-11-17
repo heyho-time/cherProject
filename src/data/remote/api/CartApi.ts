@@ -12,6 +12,7 @@ const cartProducts:Entity.Cart[] = [
 		"title": "cookie",
         "price": 5000,
         "quantity": 3,
+        "stock": 15,
         "option": [
             {
                 "id": "1",
@@ -32,6 +33,7 @@ const cartProducts:Entity.Cart[] = [
 		"title": "chocolate",
         "price": 3000,
         "quantity": 5,
+        "stock": 25,
         "option": [
             {
                 "id": "1",
@@ -49,55 +51,39 @@ const cartProducts:Entity.Cart[] = [
 
 @injectable()
 export default class CartApiImpl implements CartApi {
-    postCartItem(product : Entity.Cart): Promise<Entity.Cart> {
+    postCartItem(product : object): Promise<void> {
         return new Promise((resolve, reject) => {
-            //resolve(product);
+            console.log(product);
 
-            //reject("error");
-
-            // axios.post('http://localhost:3000/user', {
-            //     "id": product.id,
-            //     "quantity": product.quantity,
-            //     "option": [
-            //         {
-            //             "id": "1",
-            //             "tag": [{"id": "1"}]
-            //         },
-            //         {
-            //             "id": "2",
-            //             "tag": [{"id": "2"}]
-            //         }
-            //     ]
-            // })
-            // .then((response : any) => {
-            //     resolve(response);
-            // })
-            // .catch(error => {
-            //     reject(error);
-            // })
+            axios.post('', product)
+            .then((response : any) => {
+                resolve(response);
+            })
+            .catch(error => {
+                reject(error);
+            })
         });
     }
 
     getCartList(): Promise<Entity.Cart[]> {
         return new Promise((resolve, reject) => {
             const cartList: Entity.Cart[] = cartProducts;
-
-			resolve(cartList);
+			resolve(cartList)
         })
     }
 
-    deleteCartItem(productId : Entity.Cart): Promise<Entity.Cart> {
+    deleteCartItem(productId : string): Promise<void> {
         return new Promise((resolve, reject) => {
-            resolve(productId);
-            // axios.post('http://localhost:3000/user', {
-            //     "id": productId,
-            // })
-            // .then((response : any) => {
-            //     resolve(response);
-            // })
-            // .catch(error => {
-            //     reject(error);
-            // })
+            console.log(productId);
+            
+            axios.post('', productId)
+            .then((response : any) => {
+                resolve(response);
+                console.log(productId);
+            })
+            .catch(error => {
+                reject(error);
+            })
         });
     }
 }

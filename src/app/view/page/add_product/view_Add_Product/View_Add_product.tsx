@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import * as Entity from "domain/entity";
 import styled from 'styled-components';
-import Nav from '../../common/Nav';
 import ProductCategory from '../../common/ProductCategory';
 import Search_Product from './components/Search_Product';
 import ProductList from './components/productlist/ProductList';
@@ -14,7 +13,7 @@ export default function View_Add_product() {
     const [products, setProducts] = useState<Entity.Product[]>([]);
 
     useEffect(() => {
-         vm.getList()
+        vm.getProductList()
             .then((item)=>{
                 setProducts(item);
             })
@@ -25,7 +24,6 @@ export default function View_Add_product() {
 
     return (
         <BackGround>
-            <Nav />
             <ProductCategory />
             <Search_Product
                 productList={products}
