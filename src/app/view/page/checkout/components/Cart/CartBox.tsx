@@ -32,6 +32,7 @@ const CartBox : React.FC<CartBoxInterface> = (props) => {
 const CartBoxContainer = styled.div`{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     flex: 1;
     height: 89vh;
     border-radius: 4px;

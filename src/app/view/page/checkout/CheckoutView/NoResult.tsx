@@ -18,7 +18,6 @@ const NoResultContainer = styled.div`{
     font-family: NanumSquare_acB;
     font-size: 32px;
     color: #e0e0e3;
-    border: 1px solid blue;
 }`
 
 export default NoResult;

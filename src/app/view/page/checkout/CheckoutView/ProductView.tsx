@@ -18,7 +18,7 @@ interface ProductViewProps {
 }
 
 const ProductView : React.FC<ProductViewProps> = (props) => {
-    const [searchedItemList, setSearchedItemList] = useState<Entity.Product[]>([]);
+    const [searchedItemList, setSearchedItemList] = useState<Entity.Product[]>([]); 
     const [showCategory, setShowCategory] = useState<boolean>(false);
     const [categoryList, setCategoryList] = useState<Entity.Category[]>([]);
 
@@ -30,16 +30,10 @@ const ProductView : React.FC<ProductViewProps> = (props) => {
     }
 
     const clickAllCategories = () => {
-        setShowCategory(!showCategory);
-    }
-
-    useEffect(() => {
-        window.addEventListener("click", () => setSearchedItemList([]));
         vm.clickAllCategories()
         .then(res => setCategoryList(res));
-
-        return () => window.removeEventListener('click', () => setSearchedItemList([]));
-    }, [])
+        setShowCategory(!showCategory);
+    }
 
     return (
         <ProductViewContainer>
@@ -77,7 +71,7 @@ const ProductView : React.FC<ProductViewProps> = (props) => {
 const ProductViewContainer = styled.div`{
     display: flex;
     flex-direction: column;
-    height: 89vh;
+    height: 100%;
 }`
 
 const Header = styled.div`{

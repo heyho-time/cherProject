@@ -45,6 +45,7 @@ const CompleteOrderContainer = styled.div`{
     height: 777px;
     font-size: 13px;
     background-color: #ffffff;
+    justify-content: space-between;
 }`
 
 const Header = styled.div`{

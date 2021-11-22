@@ -16,9 +16,9 @@ const CartView : React.FC = () => {
     }
     
     const clickBtnCheckout = () => {
-        // alert("주문이 완료되었습니다.");
-        // setCartList([]);
-        // window.location.replace('/checkout');
+        alert("주문이 완료되었습니다.");
+        setCartList([]);
+        window.location.replace('/checkout');
         setIsBtnCheckoutClicked(true);
     }
 

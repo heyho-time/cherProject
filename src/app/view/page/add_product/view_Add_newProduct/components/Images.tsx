@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import arrow from '../../../../assets/images/arrow-up-inverse.png';
 
 const Images = ()=> {
+    const [ fileImage, setFileImage ] = useState("");
+
+    const saveFileImage = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if(e.target.files) {
+        setFileImage(URL.createObjectURL(e.target.files[0]));
+      }
+    }
+
     return (
         <Container>
             <h3>Images</h3>
             <AddFile>
                 <Circle><img src={arrow} /></Circle>
-                <button>Add File</button>
+                <InputArea>
+                  <UploadInput type="file" onChange={saveFileImage} />
+                  <UploadBtn>Add File</UploadBtn>
+                </InputArea>
                 <p>or drop files to upload</p>
+                {fileImage && <UploadedImage alt="sample" src={fileImage} />}
             </AddFile>
         </Container>
     );
@@ -39,17 +51,6 @@ padding: 71px 298px;
 border-radius: 2px;
 border: 2px dashed #eaeaea;
 
-button{
-  width: 84px;
-  height: 36px;
-  padding: 10px 0;
-  border-radius: 4px;
-  border: solid 1px #babfc3;
-  font-family: NanumSquare_acB;
-  font-size: 14px;
-  color: rgb(55, 69, 84);
-}
-
 p {
   margin: 20px 0 0;
   width: 160px;
@@ -68,3 +69,34 @@ padding: 22px;
 border-radius: 80px;
 background-color: #7770ff;
 `;
+
+const InputArea = styled.div`
+  position: relative;
+`
+
+const UploadInput = styled.input`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  opacity: 0;
+  cursor: pointer;
+`
+
+const UploadBtn = styled.button`
+  width: 100px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 4px;
+  border: solid 1px #babfc3;
+  font-family: NanumSquare_acB;
+  font-size: 14px;
+  color: rgb(55, 69, 84);
+  cursor: pointer;
+`
+
+const UploadedImage = styled.img`
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+`

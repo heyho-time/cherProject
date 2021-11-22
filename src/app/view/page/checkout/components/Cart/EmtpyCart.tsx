@@ -17,14 +17,6 @@ const EmptyCartContainer = styled.div`{
     justify-content: center;
     align-items: center;
     height: 100%;
-    overflow-x: scroll;
-
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-
-    &::-webkit-scrollbar {
-        display: none;
-    }
 
     img {
         width: 150px;
