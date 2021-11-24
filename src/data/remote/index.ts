@@ -18,7 +18,7 @@ export interface CategoryApi {
 }
 
 export interface CartApi {
-    postCartItem(product : object): Promise<void>;
     getCartList(): Promise<Entity.Cart[]>;
-    deleteCartItem(productId : number): Promise<void>;
+    postCartItem(product : object): Promise<void>;
+    deleteCartItem(productId : number | string): Promise<void>;
 }

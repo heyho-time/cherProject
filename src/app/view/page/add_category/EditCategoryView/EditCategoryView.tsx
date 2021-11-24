@@ -16,7 +16,7 @@ interface EditCategoryViewInterface {
 
 const vm: EditCategoryViewModel = container.get<EditCategoryViewModel>("EditCategoryViewModel");
 
-const AddCategoryView : React.FC<EditCategoryViewInterface> = () => {
+const EditCategoryView : React.FC<EditCategoryViewInterface> = () => {
     const history = useHistory();
     const categoryId = useLocation<EditCategoryViewInterface>().state.categoryId;
     const [ categoryName, setCategoryName ] = useState<string>("");
@@ -41,7 +41,7 @@ const AddCategoryView : React.FC<EditCategoryViewInterface> = () => {
     }
 
     const handleBtnDeleteCategory = () => {
-        vm.removeCategory("16")
+        vm.removeCategory(categoryId)
         .then(res => console.log(res))
         .catch(err => console.log(err));
 
@@ -76,7 +76,7 @@ const AddCategoryView : React.FC<EditCategoryViewInterface> = () => {
     const selectedProducts = productList.filter(item => selectedItemIds.includes(item.id.toString()));
 
     return (
-        <AddCategoryViewContainer>
+        <EditCategoryViewContainer>
             <ModalBackground isVisible={modalState}></ModalBackground>
             <Header>
                     <span>Edit Category</span>
@@ -108,11 +108,11 @@ const AddCategoryView : React.FC<EditCategoryViewInterface> = () => {
                 getSelectedItems={getSelectedItems}
             />
             <BtnDeleteCategory onClick={handleBtnDeleteCategory}>Delete Category</BtnDeleteCategory>
-        </AddCategoryViewContainer>
+        </EditCategoryViewContainer>
     )
 }
 
-const AddCategoryViewContainer = styled.div`
+const EditCategoryViewContainer = styled.div`
     position: relative;
     height: 100vh;
     background-color: #f7f7f7;
@@ -216,4 +216,4 @@ const BtnDeleteCategory = styled.button`
     }
 `
 
-export default AddCategoryView;
+export default EditCategoryView;

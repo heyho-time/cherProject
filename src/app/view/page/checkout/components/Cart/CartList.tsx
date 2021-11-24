@@ -22,13 +22,13 @@ const CartList : React.FC<CartListInterface> = (props) => {
         setCartList(newList);
 
         vm.clickDeleteCartItem(cartId)
-        .then(res => console.log("삭제 성공"))
-        .catch(err => console.log("삭제 실패"));
+        .then(res => alert("해당 상품이 장바구니에서 삭제되었습니다."))
+        .catch(err => alert("삭제 실패"));
     }
 
     useEffect(() => {
         vm.getCartList()
-        .then(res => {setCartList(res)})
+        .then(res => setCartList(res))
         .catch(err => console.log(err));
     }, []);
 
@@ -37,9 +37,10 @@ const CartList : React.FC<CartListInterface> = (props) => {
         cartList.map(item => idList.push(item.id));
 
         if(props.isClearBtnClicked === true) {
-            // vm.deleteCartItem({"id": idList})
-            // .then(res => console.log("삭제 성공"))
-            // .catch(err => console.log("삭제 실패"));
+           vm.clickDeleteCartItem("all")
+           .then(res => alert("장바구니 상품이 전체 삭제되었습니다."))
+           .catch(err => alert("삭제 실패"));
+
             setCartList([]);
         }        
     }, [props.isClearBtnClicked]);
@@ -51,7 +52,6 @@ const CartList : React.FC<CartListInterface> = (props) => {
     return(
         <CartListContainer>
             {cartList.length > 0 ? cartList.map(item => {
-                console.log(item);
                 return <CartItem 
                             key={item.id} 
                             id={item.id} 

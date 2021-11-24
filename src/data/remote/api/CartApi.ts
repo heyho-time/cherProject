@@ -41,11 +41,33 @@ const cartProducts:Entity.Cart[] = [
 
 @injectable()
 export default class CartApiImpl implements CartApi {
+    getCartList(): Promise<Entity.Cart[]> {
+        return new Promise((resolve, reject) => {
+            axios.get('http://192.168.43.127:3000/cart', 
+            {
+                headers: {
+                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
+                }
+            })
+            .then((res:any) => {
+                resolve(res.data);
+            })
+            .catch((err : any) => {
+                reject(err);
+            })
+        })
+    }
+
     postCartItem(product : object): Promise<void> {
         return new Promise((resolve, reject) => {
             console.log(product);
 
-            axios.post('http://192.168.43.127:3000/cart', product, {headers: {authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'}})
+            axios.post('http://192.168.43.127:3000/cart', product, 
+            {
+                headers: {
+                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
+                }
+            })
             .then((response : any) => {
                 resolve(response);
             })
@@ -55,31 +77,18 @@ export default class CartApiImpl implements CartApi {
         });
     }
 
-    getCartList(): Promise<Entity.Cart[]> {
-        return new Promise((resolve, reject) => {
-            // const cartList: Entity.Cart[] = cartProducts;
-			// resolve(cartList)
-
-            axios.get('http://192.168.43.127:3000/cart', {headers: {authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'}})
-            .then((res:any) => {
-                console.log(res);
-                resolve(res.data);
-            })
-            .catch((err : any) => {
-                console.log(err);
-                reject(err);
-            })
-        })
-    }
-
-    deleteCartItem(productId : number): Promise<void> {
+    deleteCartItem(productId : number | string): Promise<void> {
         return new Promise((resolve, reject) => {
             console.log(productId);
             
-            axios.delete(`http://192.168.43.127:3000/cart/${productId}`, {headers: {authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'}})
+            axios.delete(`http://192.168.43.127:3000/cart/${typeof productId === 'number' ? productId : ""}`, 
+            {
+                headers: {
+                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
+                }
+            })
             .then((response : any) => {
                 resolve(response);
-                console.log(productId);
             })
             .catch(error => {
                 reject(error);

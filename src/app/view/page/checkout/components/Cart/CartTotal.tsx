@@ -6,7 +6,7 @@ import * as Entity from "domain/entity";
 interface CartTotalProps {
     acting : string;
     cartList: Entity.Cart[];
-    clickBtnCheckout?: () =>  void;
+    clickBtnCheckout?: (acting: string) =>  void;
 }
 
 const CartTotal : React.FC<CartTotalProps> = (props) => {
@@ -41,7 +41,9 @@ const CartTotal : React.FC<CartTotalProps> = (props) => {
                 <Title add="normal">Total</Title>
                 <Price>{(subPrice + tax).toLocaleString("en")}￦</Price>
             </Column>
-            <BtnCheckout acting={props.acting} onClick={props.clickBtnCheckout}>{props.acting === "adding" ? "Checkout" : "Done"}</BtnCheckout>
+            <BtnCheckout acting={props.acting} onClick={() => {
+                if(props.clickBtnCheckout) props.clickBtnCheckout(props.acting);
+            }}>{props.acting === "adding" ? "Checkout" : "Done"}</BtnCheckout>
         </CartTotalContainer>
     )
 }

@@ -11,15 +11,15 @@ export default class CartRepositoryImpl implements CartRepository {
         this.cartApi = cartApi;
     }
 
-    postCartItem(product : object): Promise<void> {
-        return this.cartApi.postCartItem(product);
-    }
-
     getCartList(): Promise<Entity.Cart[]> {
         return this.cartApi.getCartList();
     }
 
-    deleteCartItem(productId : number): Promise<void> {
+    postCartItem(product : object): Promise<void> {
+        return this.cartApi.postCartItem(product);
+    }
+
+    deleteCartItem(productId : number | string): Promise<void> {
         return this.cartApi.deleteCartItem(productId);
     }
 }

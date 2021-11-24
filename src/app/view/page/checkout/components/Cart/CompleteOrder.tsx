@@ -6,6 +6,7 @@ import confettiIcon from "../../../../assets/images/confetti.png";
 
 interface CompleteOrderInterface {
     cartList: Entity.Cart[];
+    clickBtnCheckout: (acting: string) => void;
 }
 
 const CompleteOrder : React.FC<CompleteOrderInterface> = (props) => {
@@ -19,13 +20,10 @@ const CompleteOrder : React.FC<CompleteOrderInterface> = (props) => {
              return (
                  <CartItemContainer key={item.id}>
                     <Column>
-                        <ItemImage src={item.product.image&&item.product.image[0]}/>
+                        <ItemImage src={item.product.image[0].imageUrl}/>
                         <ItemInfo>
                             <Name>{item.product.name}</Name>
                             <Option>
-                                {/* {item.option&&item.option.map((option, index) => {
-                                    return <span key={option.id}>{`${option.tag[0].name}${index !== (item.option&&item.option.length - 1) ? " / " : ""}`}</span>
-                                })} */}
                                 <span>{item.optionKeyword}</span>
                             </Option>
                         </ItemInfo>
@@ -37,7 +35,7 @@ const CompleteOrder : React.FC<CompleteOrderInterface> = (props) => {
                 </CartItemContainer>
              )
          })}
-         <CartTotal acting="done" cartList={props.cartList}/>
+         <CartTotal acting="done" cartList={props.cartList} clickBtnCheckout={props.clickBtnCheckout} />
      </CompleteOrderContainer>
  )
 }

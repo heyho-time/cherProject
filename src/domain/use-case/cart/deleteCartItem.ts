@@ -10,7 +10,7 @@ export default class UCDeleteCartItemImpl implements UCDeleteCartItem {
         this.cartRepository = cartRepository;
     }
 
-    execute(productId : number): Promise<void> {
+    execute(productId : number | string): Promise<void> {
         return this.cartRepository.deleteCartItem(productId);
     }
 }

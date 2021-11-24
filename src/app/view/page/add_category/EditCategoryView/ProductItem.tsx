@@ -29,12 +29,12 @@ const ProductItem : React.FC<ProductItemInterface> = (props) => {
     }, [])
 
     
-    // useEffect(() => {
-    //     console.log("didupdate");
-    //     if(props.getIsItemChecked) {
-    //         props.getIsItemChecked(isChecked, props.id.toString());
-    //     } 
-    // }, [isChecked])
+    useEffect(() => {
+        console.log("didupdate");
+        if(props.getIsItemChecked) {
+            props.getIsItemChecked(isChecked, props.id.toString());
+        } 
+    }, [isChecked])
 
     return (
         <ProductItemContainer>

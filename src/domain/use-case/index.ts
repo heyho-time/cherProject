@@ -12,16 +12,16 @@ export interface UCGetCategories {
     execute(): Promise<Entity.Category[]>;
 }
 
-export interface UCPostCartItem {
-    execute(product: object): Promise<void>;
-}
-
 export interface UCGetCartList {
     execute(): Promise<Entity.Cart[]>;
 }
 
+export interface UCPostCartItem {
+    execute(product: object): Promise<void>;
+}
+
 export interface UCDeleteCartItem {
-    execute(productId: number): Promise<void>;
+    execute(productId: number | string): Promise<void>;
 }
 
 export interface UCPostNewCategory {

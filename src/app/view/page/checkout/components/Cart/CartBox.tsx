@@ -7,7 +7,7 @@ import * as Entity from "domain/entity";
 interface CartBoxInterface {
     isClearBtnClicked: boolean;
     getCartList(cartList: Entity.Cart[]): void;
-    clickBtnCheckout(): void;
+    clickBtnCheckout(acting: string): void;
 }
 
 const CartBox : React.FC<CartBoxInterface> = (props) => {

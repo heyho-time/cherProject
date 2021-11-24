@@ -15,25 +15,25 @@ export default class CheckoutViewModelImpl implements CheckoutViewModel {
                 @inject("UCGetProducts") getProducts: UCGetProducts, 
                 @inject("UCGetCartList") getCart: UCGetCartList,
                 @inject("UCDeleteCartItem") deleteCart: UCDeleteCartItem) {
-        this.getCategories = getCategories;
         this.getProducts = getProducts;
+        this.getCategories = getCategories;
         this.getCart = getCart;
         this.deleteCart = deleteCart;
-    }
-
-    clickAllCategories(): Promise<Entity.Category[]> {
-        return this.getCategories.execute();
     }
 
     getProductList(): Promise<Entity.Product[]> {
         return this.getProducts.execute();
     }
 
+    clickAllCategories(): Promise<Entity.Category[]> {
+        return this.getCategories.execute();
+    }
+
     getCartList(): Promise<Entity.Cart[]> {
         return this.getCart.execute();
     }
     
-    clickDeleteCartItem(productId: number): Promise<void> {
+    clickDeleteCartItem(productId: number | number): Promise<void> {
         return this.deleteCart.execute(productId);
     }
 }

@@ -18,7 +18,7 @@ export interface CategoryRepository {
 }
 
 export interface CartRepository {
-    postCartItem(product: object): Promise<void>;
     getCartList(): Promise<Entity.Cart[]>;
-    deleteCartItem(productId: number): Promise<void>;
+    postCartItem(product: object): Promise<void>;
+    deleteCartItem(productId: number | string): Promise<void>;
 }

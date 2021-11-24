@@ -18,11 +18,18 @@ const vm: CheckoutViewModel = container.get<CheckoutViewModel>("CheckoutViewMode
         setCartList(cartList);
     }
     
-    const clickBtnCheckout = () => {
-        alert("주문이 완료되었습니다.");
-        setCartList([]);
-        window.location.replace('/checkout');
-        setIsBtnCheckoutClicked(true);
+    const clickBtnCheckout = (acting: string) => {
+        if(acting === "adding") {
+             vm.clickDeleteCartItem("all")
+            .then(res => {
+                alert("주문이 완료되었습니다.");
+                setIsBtnCheckoutClicked(true);
+            })
+            .catch(err => alert("주문 실패"));
+        } else {
+            window.location.replace('/checkout');
+            setCartList([]);
+        }
     }
 
     return (
@@ -31,7 +38,7 @@ const vm: CheckoutViewModel = container.get<CheckoutViewModel>("CheckoutViewMode
                 <BtnClear onClick={() =>setisClearBtnClicked(true)}>Clear</BtnClear>
             </Header>
             {isbtnCheckoutClicked ? 
-                <CompleteOrder cartList={cartList}/> : 
+                <CompleteOrder cartList={cartList} clickBtnCheckout={clickBtnCheckout} /> : 
                 <CartBox 
                     isClearBtnClicked={isClearBtnClicked} 
                     getCartList={getCartList}

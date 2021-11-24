@@ -13,10 +13,10 @@ export interface CategoryViewModel {
 }
 
 export interface CheckoutViewModel {
-    clickAllCategories(): Promise<Entity.Category[]>;
     getProductList(): Promise<Entity.Product[]>;
+    clickAllCategories(): Promise<Entity.Category[]>;
     getCartList(): Promise<Entity.Cart[]>;
-    clickDeleteCartItem(productId: number): Promise<void>;
+    clickDeleteCartItem(productId: number | string): Promise<void>;
 }
 
 export interface ProductOptionViewModel {
