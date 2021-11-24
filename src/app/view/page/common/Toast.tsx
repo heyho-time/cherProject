@@ -9,7 +9,7 @@ interface ToastInterface {
 const Toast: React.FC<ToastInterface> = (props) => {
     return (
         <ToastContainer>
-            Product has been added!
+            Category has been added!
             <img src={closeIcon} onClick={() => props.getToastStatus(false)} />
         </ToastContainer>
     )

@@ -35,12 +35,11 @@ export interface CategoryListViewModel {
 export interface EditCategoryViewModel {
     getProductList(): Promise<Entity.Product[]>;
     getProductsByCategory(categoryId : string): Promise<object>;
-    modifyProductsByCategory(products: object): Promise<void>;
+    addProductsByCategory(products: object[]): Promise<void>;
     removeCategory(categoryId: string): Promise<void>;
 }
 
 export interface AddCategoryViewModel {
     getProductList(): Promise<Entity.Product[]>;
     addNewCategory(categoryName: object): Promise<object>;
-    addProductsByCategory(products: object[]): Promise<void>;
 }

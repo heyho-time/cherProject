@@ -1,22 +1,22 @@
 import * as Entity from "domain/entity";
 import { inject, injectable } from "inversify";
 import { EditCategoryViewModel } from "app/view-model";
-import { UCGetProducts, UCGetProductsByCategory, UCPatchProductsByCategory, UCDeleteCategory } from "domain/use-case";
+import { UCGetProducts, UCGetProductsByCategory, UCPostProductsByCategory, UCDeleteCategory } from "domain/use-case";
 
 @injectable()
 export default class EditCategoryViewModelImpl implements EditCategoryViewModel {
     private getProducts: UCGetProducts;
     private getProductsCategory: UCGetProductsByCategory;
-    private patchProductsCategory: UCPatchProductsByCategory;
+    private postProductsCategory: UCPostProductsByCategory;
     private deleteCategory: UCDeleteCategory;
 
     constructor(@inject("UCGetProducts") getProducts: UCGetProducts,
                 @inject("UCGetProductsByCategory") getProductsByCategory: UCGetProductsByCategory, 
-                @inject("UCPatchProductsByCategory") patchProductsByCategory: UCPatchProductsByCategory,
+                @inject("UCPostProductsByCategory") postProductsByCategory: UCPostProductsByCategory,
                 @inject("UCDeleteCategory") deleteCategory: UCDeleteCategory) {
         this.getProducts = getProducts;
         this.getProductsCategory = getProductsByCategory;
-        this.patchProductsCategory = patchProductsByCategory;
+        this.postProductsCategory = postProductsByCategory;
         this.deleteCategory = deleteCategory;
     }
 
@@ -28,12 +28,11 @@ export default class EditCategoryViewModelImpl implements EditCategoryViewModel 
         return this.getProductsCategory.execute(categoryId);
     }
 
-    modifyProductsByCategory(products: object): Promise<void> {
-        return this.patchProductsCategory.execute(products);
+    addProductsByCategory(products: object[]): Promise<void> {
+        return this.postProductsCategory.execute(products);
     }
 
     removeCategory(categoryId: string): Promise<void> {
         return this.deleteCategory.execute(categoryId);
     }
-    
 }

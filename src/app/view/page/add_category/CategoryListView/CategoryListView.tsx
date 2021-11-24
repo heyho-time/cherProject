@@ -23,11 +23,8 @@ const CategoryListView : React.FC = () => {
     
     useEffect(() => {
         vm.getCategoryList()
-        .then(res => {
-            setCategoryList(res);
-            console.log(res);
-        })
-        .catch(err => console.log("error"));
+        .then(res => setCategoryList(res))
+        .catch(err => alert("카테고리 리스트를 불러오기에 실패하였습니다."));
     }, []);
     
     return (

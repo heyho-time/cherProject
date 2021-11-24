@@ -289,7 +289,7 @@ const Categories : Entity.Category[] = [
 export default class CategoryApiImpl implements CategoryApi {
     getCategories() : Promise<Entity.Category[]> {
         return new Promise((resolve, reject) => {
-            axios.get('http://192.168.43.127:3000/category')
+            axios.get('http://192.168.43.126:3000/category')
             .then(res => {
                 resolve(res.data)
             })
@@ -301,10 +301,10 @@ export default class CategoryApiImpl implements CategoryApi {
         return new Promise((resolve, reject) => {
             console.log(categoryName);
 
-            axios.post('http://192.168.43.127:3000/category', categoryName, 
+            axios.post('http://192.168.43.126:3000/category', categoryName, 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
+                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
                 }
             })
             .then(res => {
@@ -316,12 +316,10 @@ export default class CategoryApiImpl implements CategoryApi {
 
     postProductsByCategory(products: object[]): Promise<void> {
         return new Promise((resolve, reject) => {
-            console.log(products);
-
-            axios.post('http://192.168.43.127:3000/product-category', products,  
+            axios.post('http://192.168.43.126:3000/product-category', products,  
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
+                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
                 }
             })
             .then((res: any) => {
@@ -333,10 +331,10 @@ export default class CategoryApiImpl implements CategoryApi {
 
     getProductsByCategory(categoryId: string): Promise<object> {
         return new Promise((resolve, reject) => {
-            axios.get(`http://192.168.43.127:3000/category/${categoryId}`, 
+            axios.get(`http://192.168.43.126:3000/category/${categoryId}`, 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
+                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
                 }
             })
             .then(res => resolve(res.data[0]))
@@ -344,28 +342,27 @@ export default class CategoryApiImpl implements CategoryApi {
         })
     }
 
-    patchProductsByCategory(products: object): Promise<void> {
-        return new Promise((resolve, reject) => {
-            console.log(products);
+    // patchProductsByCategory(products: object): Promise<void> {
+    //     return new Promise((resolve, reject) => {
+    //         console.log(products);
 
-            axios.patch(`http://192.168.43.127:3000/category/${categoryId}`, products, 
-            {
-                headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
-                }
-            })
-            .then((res:any) => resolve(res))
-            .catch(err => reject(err));
-        })
-    }
-
+    //         axios.post(`http://192.168.43.126:3000/category/${categoryId}`, products, 
+    //         {
+    //             headers: {
+    //                 authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
+    //             }
+    //         })
+    //         .then((res:any) => resolve(res))
+    //         .catch(err => reject(err));
+    //     })
+    // }
     
     deleteCategory(categoryId: string): Promise<void> {
         return new Promise((resolve, reject) => {
-            axios.delete(`http://192.168.43.127:3000/category/${categoryId}`, 
+            axios.delete(`http://192.168.43.126:3000/category/${categoryId}`, 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
+                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
                 }
             })
             .then((res:any) => resolve(res))

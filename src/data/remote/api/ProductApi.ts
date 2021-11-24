@@ -462,7 +462,7 @@ const products:Entity.Product[] = [
 export default class ProductApiImpl implements ProductApi {
     getProducts(): Promise<Entity.Product[]> {
         return new Promise((resolve, reject) => {
-			axios.get('http://192.168.43.127:3000/product/list')
+			axios.get('http://192.168.43.126:3000/product/list')
 			.then((res:any) => {
 				resolve(res.data);
 			})

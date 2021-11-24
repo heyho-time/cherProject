@@ -21,7 +21,7 @@ const AddCategoryView : React.FC<AddCategoryViewInterface> = (props) => {
     const [ categoryTitle, setCategoryTitle ] = useState<string>("");
     const [ productList, setProductList ] = useState<Entity.Product[]>([]);
     const [ modalState, setModalState ] = useState<boolean>(false);
-    const [ selectedItems, setSelectedItems ] = useState<string[]>([]);
+    const [ selectedItems, setSelectedItems ] = useState<number[]>([]);
 
     const getCategoryTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCategoryTitle(e.target.value);
@@ -44,7 +44,8 @@ const AddCategoryView : React.FC<AddCategoryViewInterface> = (props) => {
     }
 
     const getSelectedItems = (selectedItems : string[]) => {
-        setSelectedItems(selectedItems);
+        const stringToNum = selectedItems.map(item => parseInt(item, 10));
+        setSelectedItems(stringToNum);
     }
 
     const handleBtnSave = () => {
@@ -62,11 +63,9 @@ const AddCategoryView : React.FC<AddCategoryViewInterface> = (props) => {
         .then(res => setProductList(res))
         .catch(err => console.log(err));
     }, []);
-    
-    const selectedProducts = productList.filter(item => {
-        if(item.id) selectedItems.includes(item.id.toString())
-    });
-    
+
+    const selectedProducts = productList.filter(item => selectedItems.includes(item.id));
+
     return (
         <AddCategoryViewContainer>
             <ModalBackground isVisible={modalState}></ModalBackground>

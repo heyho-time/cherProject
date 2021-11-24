@@ -43,10 +43,10 @@ const cartProducts:Entity.Cart[] = [
 export default class CartApiImpl implements CartApi {
     getCartList(): Promise<Entity.Cart[]> {
         return new Promise((resolve, reject) => {
-            axios.get('http://192.168.43.127:3000/cart', 
+            axios.get('http://192.168.43.126:3000/cart', 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
+                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
                 }
             })
             .then((res:any) => {
@@ -62,10 +62,10 @@ export default class CartApiImpl implements CartApi {
         return new Promise((resolve, reject) => {
             console.log(product);
 
-            axios.post('http://192.168.43.127:3000/cart', product, 
+            axios.post('http://192.168.43.126:3000/cart', product, 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
+                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
                 }
             })
             .then((response : any) => {
@@ -81,10 +81,10 @@ export default class CartApiImpl implements CartApi {
         return new Promise((resolve, reject) => {
             console.log(productId);
             
-            axios.delete(`http://192.168.43.127:3000/cart/${typeof productId === 'number' ? productId : ""}`, 
+            axios.delete(`http://192.168.43.126:3000/cart/${typeof productId === 'number' ? productId : ""}`, 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'
+                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
                 }
             })
             .then((response : any) => {

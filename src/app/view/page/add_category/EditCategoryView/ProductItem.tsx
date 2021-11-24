@@ -20,9 +20,6 @@ const ProductItem : React.FC<ProductItemInterface> = (props) => {
     }
 
     useEffect(() => {
-        console.log("didmount");
-        console.log(props.id);
-            console.log(props.isChecked);
         if(props.isChecked) {
             setIsChekced(props.isChecked);
         }
@@ -30,7 +27,6 @@ const ProductItem : React.FC<ProductItemInterface> = (props) => {
 
     
     useEffect(() => {
-        console.log("didupdate");
         if(props.getIsItemChecked) {
             props.getIsItemChecked(isChecked, props.id.toString());
         } 
@@ -40,7 +36,7 @@ const ProductItem : React.FC<ProductItemInterface> = (props) => {
         <ProductItemContainer>
             <div>
                 <CheckBox type="checkbox" id={props.id.toString()} onChange={handleCheckChange} checked={isChecked} isVisible={props.parent ? true : false} />
-                <ProductImage src={props.image[0].imageUrl} />
+                <ProductImage src={props.image[0]?.imageUrl} />
                 <Title>{props.name}</Title>
             </div>
         </ProductItemContainer>

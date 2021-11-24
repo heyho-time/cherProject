@@ -42,35 +42,38 @@ const EditCategoryView : React.FC<EditCategoryViewInterface> = () => {
 
     const handleBtnDeleteCategory = () => {
         vm.removeCategory(categoryId)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-
-        history.push('/category_list');
+        .then(res => {
+            alert("카테고리가 삭제되었습니다.");
+            window.location.replace('/category_list');
+        })
+        .catch(err => alert("카테고리 삭제에 실패하였습니다."));
     }
 
     const handleBtnSave = () => {
         let productsByCategory: object[] = [];
-        selectedItemIds.map(item => productsByCategory.push({"category": categoryId,"categoryName": categoryName, "product": item}));
+        selectedItemIds.map(item => productsByCategory.push({"category": categoryId, "product": item}));
 
-        vm.modifyProductsByCategory(productsByCategory)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-
-        history.push('/category_list');
+        vm.addProductsByCategory(productsByCategory)
+        .then(res => {
+            alert("카테고리에 상품이 추가되었습니다.");
+            history.push('/category_list');
+        })
+        .catch(err => alert("상품 추가 실패"));
     }
 
     useEffect(() => {
         vm.getProductsByCategory(categoryId)
         .then((res: any) => {
             setCategoryName(res.name);
-            const selectedItems = res.productCategory.map((item: {id: number; product: object}) => item.id.toString())
+            
+            const selectedItems = res.productCategory.map((item: {id: number; product: {id: number}}) => item.product.id.toString());
             setSelectedItemIds(selectedItems);
         })
-        .catch(err => console.log(err));
+        .catch(err => alert("카테고리별 상품 리스트 불러오기에 실패하였습니다."));
 
         vm.getProductList()
         .then(res => setProductList(res))
-        .catch(err => console.log(err));
+        .catch(err => alert("상품 리스트 불러오기에 실패하였습니다."));
     }, []);
 
     const selectedProducts = productList.filter(item => selectedItemIds.includes(item.id.toString()));
