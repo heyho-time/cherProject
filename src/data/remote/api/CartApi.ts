@@ -2,7 +2,9 @@ import * as Entity from "domain/entity";
 import { CartApi } from "data/remote";
 import { injectable } from "inversify";
 import axios from "axios";
-// import * as ApiManager from "data/remote/ApiManager";
+
+const TOKEN = localStorage.getItem("token");
+const USER_TOKEN = TOKEN?.slice(1, TOKEN.length-1);
 
 const cartProducts:Entity.Cart[] = [
     {
@@ -46,7 +48,7 @@ export default class CartApiImpl implements CartApi {
             axios.get('http://192.168.43.126:3000/cart', 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
+                    authorization: USER_TOKEN,
                 }
             })
             .then((res:any) => {
@@ -65,7 +67,7 @@ export default class CartApiImpl implements CartApi {
             axios.post('http://192.168.43.126:3000/cart', product, 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
+                    authorization: USER_TOKEN
                 }
             })
             .then((response : any) => {
@@ -84,7 +86,7 @@ export default class CartApiImpl implements CartApi {
             axios.delete(`http://192.168.43.126:3000/cart/${typeof productId === 'number' ? productId : ""}`, 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
+                    authorization: USER_TOKEN
                 }
             })
             .then((response : any) => {

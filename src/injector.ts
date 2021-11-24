@@ -9,18 +9,19 @@ import EditOptionViewModelImpl from "app/view-model/implementation/EditOptionVie
 import AddCategoryViewModelImpl from "app/view-model/implementation/AddCategoryViewModel";
 import EditCategoryViewModelImpl from "app/view-model/implementation/EditCategoryViewModel";
 
-import { UCPostAccount, UCGetProducts, UCGetCategories, UCPostCartItem, UCGetCartList, UCDeleteCartItem, UCPostNewCategory, UCPostProductsByCategory, UCGetProductsByCategory, UCPatchProductsByCategory, UCDeleteCategory } from "domain/use-case";
+import { UCPostAccount, UCGetProducts, UCGetCategories, UCPostCartItem, UCGetCartList, UCDeleteCartItem, UCPostProductsByCategory, UCGetProductsByCategory, UCPatchProductsByCategory, UCDeleteCategory, UCDeleteProductByCategory, UCPatchCategoryName } from "domain/use-case";
 import UCPostAccountImplement from "domain/use-case/user/PostAccount";
 import UCGetProductImplement from "domain/use-case/products/GetProducts";
 import UCGetCategoriesImpl from "domain/use-case/categories/GetCategories";
 import UCPostCartItemImpl from "domain/use-case/cart/postCartItem";
 import UCGetCartListImpl from "domain/use-case/cart/getCartList";
 import UCDeleteCartItemImpl from "domain/use-case/cart/deleteCartItem";
-import UCPostNewCategoryImpl from "domain/use-case/categories/PostNewCategory";
 import UCPostProductsByCategoryImpl from "domain/use-case/categories/PostProductsByCategory";
 import UCGetProductsByCategoryImpl from "domain/use-case/categories/GetProductsByCategory";
 import UCPatchProductsByCategoryImpl from "domain/use-case/categories/PatchProductsByCategory";
 import UCDeleteCategoryImpl from "domain/use-case/categories/DeleteCategory";
+import UCDeleteProductByCategoryImpl from "domain/use-case/categories/DeleteProductByCategory";
+import UCPatchCategoryNameImpl from "domain/use-case/categories/PatchCategoryName";
 
 import { CartRepository, CategoryRepository, ProductRepository, UserRepository } from "domain/interactor/repository";
 import UserRepositoryImpl from "data/repository/UserRepository";
@@ -54,11 +55,12 @@ container.bind<UCGetCategories>("UCGetCategories").to(UCGetCategoriesImpl);
 container.bind<UCPostCartItem>("UCPostCartItem").to(UCPostCartItemImpl);
 container.bind<UCGetCartList>("UCGetCartList").to(UCGetCartListImpl);
 container.bind<UCDeleteCartItem>("UCDeleteCartItem").to(UCDeleteCartItemImpl);
-container.bind<UCPostNewCategory>("UCPostNewCategory").to(UCPostNewCategoryImpl)
 container.bind<UCPostProductsByCategory>("UCPostProductsByCategory").to(UCPostProductsByCategoryImpl);
 container.bind<UCGetProductsByCategory>("UCGetProductsByCategory").to(UCGetProductsByCategoryImpl);
 container.bind<UCPatchProductsByCategory>("UCPatchProductsByCategory").to(UCPatchProductsByCategoryImpl);
 container.bind<UCDeleteCategory>("UCDeleteCategory").to(UCDeleteCategoryImpl);
+container.bind<UCDeleteProductByCategory>("UCDeleteProductByCategory").to(UCDeleteProductByCategoryImpl);
+container.bind<UCPatchCategoryName>("UCPatchCategoryName").to(UCPatchCategoryNameImpl);
 
 /*repository */
 container.bind<UserRepository>("UserRepository").to(UserRepositoryImpl);

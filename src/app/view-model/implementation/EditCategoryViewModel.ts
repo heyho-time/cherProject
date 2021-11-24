@@ -1,38 +1,52 @@
 import * as Entity from "domain/entity";
 import { inject, injectable } from "inversify";
 import { EditCategoryViewModel } from "app/view-model";
-import { UCGetProducts, UCGetProductsByCategory, UCPostProductsByCategory, UCDeleteCategory } from "domain/use-case";
+import { UCGetProducts, UCDeleteCategory, UCPatchCategoryName, UCGetProductsByCategory, UCPatchProductsByCategory, UCDeleteProductByCategory } from "domain/use-case";
 
 @injectable()
 export default class EditCategoryViewModelImpl implements EditCategoryViewModel {
     private getProducts: UCGetProducts;
-    private getProductsCategory: UCGetProductsByCategory;
-    private postProductsCategory: UCPostProductsByCategory;
     private deleteCategory: UCDeleteCategory;
+    private patchName: UCPatchCategoryName;
+    private getProductsCategory: UCGetProductsByCategory;
+    private patchProductsByCategory: UCPatchProductsByCategory;
+    private deleteProduct: UCDeleteProductByCategory;
 
     constructor(@inject("UCGetProducts") getProducts: UCGetProducts,
+                @inject("UCDeleteCategory") deleteCategory: UCDeleteCategory,
+                @inject("UCPatchCategoryName") patchName: UCPatchCategoryName,
                 @inject("UCGetProductsByCategory") getProductsByCategory: UCGetProductsByCategory, 
-                @inject("UCPostProductsByCategory") postProductsByCategory: UCPostProductsByCategory,
-                @inject("UCDeleteCategory") deleteCategory: UCDeleteCategory) {
+                @inject("UCPatchProductsByCategory") patchProductsByCategory: UCPatchProductsByCategory,
+                @inject("UCDeleteProductByCategory") deleteProduct: UCDeleteProductByCategory){
         this.getProducts = getProducts;
-        this.getProductsCategory = getProductsByCategory;
-        this.postProductsCategory = postProductsByCategory;
         this.deleteCategory = deleteCategory;
+        this.patchName = patchName;
+        this.getProductsCategory = getProductsByCategory;
+        this.patchProductsByCategory = patchProductsByCategory;
+        this.deleteProduct = deleteProduct;
     }
 
     getProductList(): Promise<Entity.Product[]> {
         return this.getProducts.execute();
     }
 
+    removeCategory(categoryId: string): Promise<void> {
+        return this.deleteCategory.execute(categoryId);
+    }
+
+    editCategoryName(categoryId: number, categoryName: string): Promise<void> {
+        return this.patchName.execute(categoryId, categoryName);
+    }
+
     getProductsByCategory(categoryId : string): Promise<object> {
         return this.getProductsCategory.execute(categoryId);
     }
 
-    addProductsByCategory(products: object[]): Promise<void> {
-        return this.postProductsCategory.execute(products);
+    editProductsByCategory(products: object[]): Promise<void> {
+        return this.patchProductsByCategory.execute(products);
     }
 
-    removeCategory(categoryId: string): Promise<void> {
-        return this.deleteCategory.execute(categoryId);
+    removeProductByCategory(product: object): Promise<void> {
+        return this.deleteProduct.execute(product);
     }
 }

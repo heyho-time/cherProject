@@ -38,6 +38,10 @@ const EditProductsModal : React.FC<EditProductsModalInterface> = (props) => {
         setSelectedItems(props.selectedItemIds);
         if(props.modalState === false) setUserInput("");
     }, [props.selectedItemIds])
+
+    useEffect(() => {
+        setUserInput("");
+    }, [])
     
     const filteredList = props.productList.filter(item => item.name.includes(userInput));
     

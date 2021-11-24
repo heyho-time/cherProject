@@ -1,16 +1,17 @@
 import { inject, injectable } from "inversify";
 import { CategoryRepository } from "domain/interactor/repository";
-import { UCPostProductsByCategory} from "..";
+import { UCDeleteProductByCategory } from "..";
 
 @injectable()
-export default class UCPostProductsByCategoryImpl implements UCPostProductsByCategory {
+
+export default class UCDeleteProductByCategoryImpl implements UCDeleteProductByCategory {
     private categoryRepository : CategoryRepository;
 
     constructor(@inject("CategoryRepository") categoryRepository: CategoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-    execute(products: object): Promise<void> {
-        return this.categoryRepository.postProductsByCategory(products);
+    execute(product: object): Promise<void> {
+        return this.categoryRepository.deleteProductByCategory(product);
     }
 }

@@ -4,6 +4,9 @@ import { injectable } from "inversify";
 import axios from "axios";
 // import * as ApiManager from "data/remote/ApiManager";
 
+const TOKEN = localStorage.getItem("token");
+const USER_TOKEN = TOKEN?.slice(1, TOKEN.length-1);
+
 const Categories : Entity.Category[] = [
     {
         "id": "1",
@@ -297,34 +300,35 @@ export default class CategoryApiImpl implements CategoryApi {
         })
     }
 
-    postNewCategory(categoryName: object): Promise<object> {
+    deleteCategory(categoryId: string): Promise<void> {
         return new Promise((resolve, reject) => {
-            console.log(categoryName);
-
-            axios.post('http://192.168.43.126:3000/category', categoryName, 
+            axios.delete(`http://192.168.43.126:3000/category/${categoryId}`, 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
+                    authorization: USER_TOKEN
                 }
             })
-            .then(res => {
-                resolve(res);
-            })
+            .then((res:any) => resolve(res))
             .catch(err => reject(err));
         })
     }
 
-    postProductsByCategory(products: object[]): Promise<void> {
+    patchCategoryName(categoryId: number, categoryName: string): Promise<void> {
         return new Promise((resolve, reject) => {
-            axios.post('http://192.168.43.126:3000/product-category', products,  
+            console.log(categoryId, categoryName);
+            
+            const editCategory = {
+                "id": categoryId,
+                "name": categoryName
+            }
+
+            axios.patch(`http://192.168.43.126:3000/category/${categoryId}`, editCategory,
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
+                    authorization: USER_TOKEN
                 }
             })
-            .then((res: any) => {
-                resolve(res);
-            })
+            .then((res: any) => resolve(res))
             .catch(err => reject(err));
         })
     }
@@ -334,7 +338,7 @@ export default class CategoryApiImpl implements CategoryApi {
             axios.get(`http://192.168.43.126:3000/category/${categoryId}`, 
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
+                    authorization: USER_TOKEN
                 }
             })
             .then(res => resolve(res.data[0]))
@@ -342,32 +346,48 @@ export default class CategoryApiImpl implements CategoryApi {
         })
     }
 
-    // patchProductsByCategory(products: object): Promise<void> {
-    //     return new Promise((resolve, reject) => {
-    //         console.log(products);
-
-    //         axios.post(`http://192.168.43.126:3000/category/${categoryId}`, products, 
-    //         {
-    //             headers: {
-    //                 authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
-    //             }
-    //         })
-    //         .then((res:any) => resolve(res))
-    //         .catch(err => reject(err));
-    //     })
-    // }
-    
-    deleteCategory(categoryId: string): Promise<void> {
+    postProductsByCategory(products: object): Promise<void> {
         return new Promise((resolve, reject) => {
-            axios.delete(`http://192.168.43.126:3000/category/${categoryId}`, 
+            console.log(products);
+
+            axios.post('http://192.168.43.126:3000/category', products,  
             {
                 headers: {
-                    authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1NjQzNjh9.JsF9lWVxJDkwAOvQ8LMJm_sF06qFVoNkOT16oxhiJQM'
+                    authorization: USER_TOKEN
+                }
+            })
+            .then((res: any) => {
+                resolve(res);
+            })
+            .catch(err => reject(err));
+        })
+    }
+
+    deleteProductByCategory(product: object): Promise<void> {
+        return new Promise((resolve, reject) => {
+            axios.delete('http://192.168.43.126:3000/product-category', {
+                data: product,
+                headers: {
+                    authorization: USER_TOKEN
+                }
+            })
+            .then((res: any) => resolve(res))
+            .catch(err => reject(err));
+        })
+    }
+
+    patchProductsByCategory(products: object): Promise<void> {
+        return new Promise((resolve, reject) => {
+            console.log(products);
+            
+            axios.post('http://192.168.43.126:3000/product-category', products,
+            {
+                headers: {
+                    authorization: USER_TOKEN
                 }
             })
             .then((res:any) => resolve(res))
             .catch(err => reject(err));
         })
     }
-    
 }

@@ -24,16 +24,12 @@ export interface UCDeleteCartItem {
     execute(productId: number | string): Promise<void>;
 }
 
-export interface UCPostNewCategory {
-    execute(categoryName: object): Promise<object>;
+export interface UCGetProductsByCategory {
+    execute(categoryId : string): Promise<object>;
 }
 
 export interface UCPostProductsByCategory {
-    execute(products: object[]): Promise<void>;
-}
-
-export interface UCGetProductsByCategory {
-    execute(categoryId : string): Promise<object>;
+    execute(products: object): Promise<void>;
 }
 
 export interface UCPatchProductsByCategory {
@@ -42,4 +38,12 @@ export interface UCPatchProductsByCategory {
 
 export interface UCDeleteCategory {
     execute(categoryId: string): Promise<void>;
+}
+
+export interface UCDeleteProductByCategory {
+    execute(product: object): Promise<void>;
+}
+
+export interface UCPatchCategoryName {
+    execute(categoryId: number, categoryName: string): Promise<void>;
 }

@@ -25,7 +25,7 @@ const UserView: React.FC = () => {
     const handleSignInClick = () => {
         vm.clickSignIn(inputs)
         .then(res => {
-            console.log(res);
+            localStorage.setItem("token", JSON.stringify(res));
             history.push("/checkout");
         })
         .catch(error => {

@@ -1,16 +1,16 @@
 import { inject, injectable } from "inversify";
 import { CategoryRepository } from "domain/interactor/repository";
-import { UCPostNewCategory } from "..";
+import { UCPatchCategoryName } from "..";
 
 @injectable()
-export default class UCPostNewCategoryImpl implements UCPostNewCategory {
+export default class UCPatchCategoryNameImpl implements UCPatchCategoryName {
     private categoryRepository : CategoryRepository;
 
     constructor(@inject("CategoryRepository") categoryRepository: CategoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
-    execute(categoryName: object): Promise<object> {
-        return this.categoryRepository.postNewCategory(categoryName);
+    execute(categoryId: number, categoryName: string): Promise<void> {
+        return this.categoryRepository.patchCategoryName(categoryId, categoryName);
     }
 }

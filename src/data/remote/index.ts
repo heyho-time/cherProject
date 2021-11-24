@@ -10,11 +10,12 @@ export interface UserApi {
 
 export interface CategoryApi {
     getCategories(): Promise<Entity.Category[]>;
-    postNewCategory(categoryName : object): Promise<object>;
-    postProductsByCategory(products : object[]): Promise<void>;
+    postProductsByCategory(products : object): Promise<void>;
     getProductsByCategory(categoryId: string): Promise<object>;
+    deleteProductByCategory(product: object): Promise<void>
     patchProductsByCategory(products : object): Promise<void>;
     deleteCategory(categoryId : string): Promise<void>;
+    patchCategoryName(categoryId: number, categoryName: string): Promise<void>;
 }
 
 export interface CartApi {

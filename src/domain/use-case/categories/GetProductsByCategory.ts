@@ -1,4 +1,3 @@
-import * as Entity from "domain/entity";
 import { inject, injectable } from "inversify";
 import { CategoryRepository } from "domain/interactor/repository";
 import { UCGetProductsByCategory } from "..";

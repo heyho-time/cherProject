@@ -10,11 +10,12 @@ export interface UserRepository {
 
 export interface CategoryRepository {
     getCategories(): Promise<Entity.Category[]>;
-    postNewCategory(categoryName: object): Promise<object>;
-    postProductsByCategory(products: object[]): Promise<void>;
-    getProductsByCategory(categoryId : string): Promise<object>;
-    patchProductsByCategory(products : object): Promise<void>;
     deleteCategory(categoryId : string): Promise<void>;
+    patchCategoryName(categoryId: number, categoryName: string): Promise<void>;
+    getProductsByCategory(categoryId : string): Promise<object>;
+    postProductsByCategory(products: object): Promise<void>;
+    deleteProductByCategory(product: object): Promise<void>
+    patchProductsByCategory(products : object): Promise<void>;
 }
 
 export interface CartRepository {

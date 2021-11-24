@@ -57,7 +57,7 @@ const CartList : React.FC<CartListInterface> = (props) => {
                             id={item.id} 
                             productId={item.product.id}
                             image={item.product.image} 
-                            name={item.product.name} 
+                            name={item.product?.name} 
                             price={item.product.releasePrice} 
                             quantity={item.quantity} 
                             stock={item.product.quantity}

@@ -27,14 +27,6 @@ const AddCategoryView : React.FC<AddCategoryViewInterface> = (props) => {
         setCategoryTitle(e.target.value);
     }
 
-    const handleTitlePressEnter = (e: React.KeyboardEvent<HTMLInputElement>) =>{
-        if(e.key === 'Enter') {
-            vm.addNewCategory({"name": categoryTitle})
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
-        }
-    }
-
     const showProductListModal = () => {
         setModalState(!modalState);
     }
@@ -49,13 +41,20 @@ const AddCategoryView : React.FC<AddCategoryViewInterface> = (props) => {
     }
 
     const handleBtnSave = () => {
-        let productsByCategory: object[] = [];
-        selectedItems.map(item => productsByCategory.push({"category": "17", "product": item}));
+        const newCategory = {
+            "category": {
+                "name": categoryTitle,
+            }, 
+            "product": selectedItems
+        }
 
-        vm.addProductsByCategory(productsByCategory);
-
-        props.getToastStatus(true);
-        history.push('/category_list');
+        vm.addProductsByCategory(newCategory)
+        .then(res => {
+            alert("새 카테고리가 추가되었습니다.");
+            props.getToastStatus(true);
+            history.push('/category_list');
+        })
+        .catch(err => alert("카테고리 추가 실패"));
     }
     
     useEffect(() => {
@@ -79,7 +78,7 @@ const AddCategoryView : React.FC<AddCategoryViewInterface> = (props) => {
             <Contents>
                 <TitleBox>
                     <p>Title</p>
-                    <SetCategoryTitle placeholder="Product Type or Group" value={categoryTitle} onChange={getCategoryTitle} onKeyPress={handleTitlePressEnter}/>
+                    <SetCategoryTitle placeholder="Product Type or Group" value={categoryTitle} onChange={getCategoryTitle} />
                 </TitleBox>
                 <ProductsBox>
                     <p>Products</p>

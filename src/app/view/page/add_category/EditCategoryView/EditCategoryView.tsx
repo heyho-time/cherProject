@@ -40,6 +40,16 @@ const EditCategoryView : React.FC<EditCategoryViewInterface> = () => {
         setSelectedItemIds(selectedItems);
     }
 
+    const handleBtnDeleteItem = (selectedItemId: string) => {
+        const newArr = selectedItemIds.filter(item => item !== selectedItemId);
+        setSelectedItemIds(newArr);
+
+        const removeProduct = {"product": selectedItemId, "category": categoryId};
+        vm.removeProductByCategory(removeProduct)
+        .then(res => alert("상품이 삭제되었습니다."))
+        .catch(err => alert("상품 삭제에 실패하였습니다."));
+    }
+
     const handleBtnDeleteCategory = () => {
         vm.removeCategory(categoryId)
         .then(res => {
@@ -53,12 +63,13 @@ const EditCategoryView : React.FC<EditCategoryViewInterface> = () => {
         let productsByCategory: object[] = [];
         selectedItemIds.map(item => productsByCategory.push({"category": categoryId, "product": item}));
 
-        vm.addProductsByCategory(productsByCategory)
+        vm.editCategoryName(parseInt(categoryId, 10), categoryName);
+        vm.editProductsByCategory(productsByCategory)
         .then(res => {
-            alert("카테고리에 상품이 추가되었습니다.");
+            alert("해당 카테고리의 상품이 수정되었습니다.");
             history.push('/category_list');
         })
-        .catch(err => alert("상품 추가 실패"));
+        .catch(err => alert("상품 수정 실패"));
     }
 
     useEffect(() => {
@@ -98,7 +109,7 @@ const EditCategoryView : React.FC<EditCategoryViewInterface> = () => {
                     <SetProducts placeholder="Search for products" onClick={showProductListModal} readOnly={true} />
                     <SelectedProductList>
                         {selectedProducts.map(item => {
-                            return <ProductItem key={item.id} id={item.id} image={item.image} name={item.name} />
+                            return <ProductItem key={item.id} id={item.id} image={item.image} name={item.name} handleBtnDeleteItem={handleBtnDeleteItem}/>
                         })}
                     </SelectedProductList>
                 </ProductsBox>
