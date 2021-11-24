@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+import * as Entity from "domain/entity";
+
 interface ProductItemInterface {
-    id: string;
-    image: string[];
-    title: string;
+    id: number;
+    image: Entity.Image[];
+    name: string;
     parent?: string;
     isChecked?: boolean;
     getIsItemChecked?: (isChecked: boolean, id: string) => void;
@@ -18,22 +20,28 @@ const ProductItem : React.FC<ProductItemInterface> = (props) => {
     }
 
     useEffect(() => {
-        if(props.isChecked) setIsChekced(props.isChecked);
+        console.log("didmount");
+        console.log(props.id);
+            console.log(props.isChecked);
+        if(props.isChecked) {
+            setIsChekced(props.isChecked);
+        }
     }, [])
 
-
-    useEffect(() => {
-        if(props.getIsItemChecked) {
-            props.getIsItemChecked(isChecked, props.id);
-        } 
-    }, [isChecked])
+    
+    // useEffect(() => {
+    //     console.log("didupdate");
+    //     if(props.getIsItemChecked) {
+    //         props.getIsItemChecked(isChecked, props.id.toString());
+    //     } 
+    // }, [isChecked])
 
     return (
         <ProductItemContainer>
             <div>
-                <CheckBox type="checkbox" id={props.id} onChange={handleCheckChange} checked={isChecked} isVisible={props.parent ? true : false} />
-                <ProductImage src={props.image[0]} />
-                <Title>{props.title}</Title>
+                <CheckBox type="checkbox" id={props.id.toString()} onChange={handleCheckChange} checked={isChecked} isVisible={props.parent ? true : false} />
+                <ProductImage src={props.image[0].imageUrl} />
+                <Title>{props.name}</Title>
             </div>
         </ProductItemContainer>
     )

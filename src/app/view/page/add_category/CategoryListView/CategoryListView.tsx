@@ -23,7 +23,10 @@ const CategoryListView : React.FC = () => {
     
     useEffect(() => {
         vm.getCategoryList()
-        .then(res => setCategoryList(res))
+        .then(res => {
+            setCategoryList(res);
+            console.log(res);
+        })
         .catch(err => console.log("error"));
     }, []);
     
@@ -42,7 +45,7 @@ const CategoryListView : React.FC = () => {
                     <AmountOfProducts>Amount of Products</AmountOfProducts>
                 </Title>
                 {filteredList.map(item => {
-                    return <CategoryListItem key={item.id} id={item.id} name={item.name} products={item.products}/>
+                    return <CategoryListItem key={item.id} id={item.id.toString()} name={item.name} count={item.count}/>
                 })}
             </CategoryList>
         </CategoryListViewContainer>

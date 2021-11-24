@@ -12,7 +12,7 @@ export default class UserViewModelImpl implements UserViewModel {
         this.postAccount = postAccount;
     }
 
-    clickSignIn(account : Entity.User): Promise<Entity.User> {
+    clickSignIn(account : Entity.User): Promise<object> {
        return this.postAccount.execute(account);
     }
 }

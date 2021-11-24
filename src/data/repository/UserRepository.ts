@@ -11,7 +11,7 @@ export default class UserRepositoryImpl implements UserRepository {
         this.userApi = userApi;
     }
 
-    postAccount(account : Entity.User): Promise<Entity.User> {
+    postAccount(account : Entity.User): Promise<object> {
         return this.userApi.postAccount(account);
     }
 }

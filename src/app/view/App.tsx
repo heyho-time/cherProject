@@ -12,6 +12,7 @@ import CategoryListView from "./page/add_category/CategoryListView/CategoryListV
 import AddCategoryView from "./page/add_category/AddCategoryView/AddCategoryView";
 import EditCategoryView from './page/add_category/EditCategoryView/EditCategoryView';
 import Toast from "./page/common/Toast";
+import example from "./page/example";
 
 const App: React.FC = () => {
     const [ toastStatus, setToastStatus ] = useState<boolean>(false);

@@ -1,19 +1,20 @@
 import React from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-import * as Entity from "domain/entity";
 import deleteIcon from "../../../../assets/images/close-primary.png"
 
+import * as Entity from "domain/entity";
+
 interface CartItemInterface {
-    id: string;
-    productId?: string;
-    image?: string[];
-    title?: string;
-    price?: number;
-    quantity?: number;
-    stock?: number;
-    option?: Entity.Option[];
-    getDeleteItemId(cartId: string): void;
+    id: number;
+    productId: number;
+    image: Entity.Image[];
+    name: string;
+    price: number;
+    quantity: number;
+    stock: number;
+    optionKeyword: string;
+    getDeleteItemId(cartId: number): void;
 }
 
 const CartItem : React.FC<CartItemInterface> = (props) => {
@@ -26,8 +27,8 @@ const CartItem : React.FC<CartItemInterface> = (props) => {
                 id: props.id,
                 productId: props.productId,
                 image: props.image,
-                title: props.title,
-                options: props.option,
+                name: props.name,
+                optionKeyword: props.optionKeyword,
                 stock: props.stock,
                 quantity: props.quantity,
                 price: props.price,
@@ -38,13 +39,11 @@ const CartItem : React.FC<CartItemInterface> = (props) => {
     return (
         <CartItemContainer>
             <Column onClick={goToEditPage}>
-                <ItemImage src={props.image&&props.image[0]}/>
+                <ItemImage src={props.image[0].imageUrl}/>
                 <ItemInfo>
-                    <Name>{props.title}</Name>
+                    <Name>{props.name}</Name>
                     <Option>
-                        {props.option&&props.option.map((option, index) => {
-                            return <span key={option.id}>{`${option.tag[0].name}${index !== (props.option&&props.option.length - 1) ? " / " : ""}`}</span>
-                        })}
+                        <span>{props.optionKeyword}</span>
                     </Option>
                 </ItemInfo>
                 <ItemOrder>

@@ -33,7 +33,7 @@ export default class CheckoutViewModelImpl implements CheckoutViewModel {
         return this.getCart.execute();
     }
     
-    clickDeleteCartItem(productId: string): Promise<void> {
+    clickDeleteCartItem(productId: number): Promise<void> {
         return this.deleteCart.execute(productId);
     }
 }

@@ -38,7 +38,7 @@ const EditProductsModal : React.FC<EditProductsModalInterface> = (props) => {
         if(props.modalState === false) setUserInput("");
     })
     
-    const filteredList = props.productList.filter(item => item.title.includes(userInput));
+    const filteredList = props.productList.filter(item => item.name.includes(userInput));
     
     return (
         <EditProductsModalContainer isVisible={props.modalState}>
@@ -47,7 +47,7 @@ const EditProductsModal : React.FC<EditProductsModalInterface> = (props) => {
                 <SearchProductInput placeholder="Search for products" value={userInput} onChange={handleUserInput} />
                 <ProductList>
                     {filteredList.map(item => {
-                        return <ProductItem key={item.id} id={item.id} image={item.image} title={item.title} parent="modal" getIsItemChecked={getIsItemChecked} />
+                        return <ProductItem key={item.id} id={item.id} image={item.image} title={item.name} parent="modal" getIsItemChecked={getIsItemChecked} />
                     })}
                 </ProductList>
             </Content>

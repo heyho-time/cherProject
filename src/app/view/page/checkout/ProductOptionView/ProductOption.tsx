@@ -14,45 +14,46 @@ import { ProductOptionViewModel } from "app/view-model";
 const vm: ProductOptionViewModel = container.get<ProductOptionViewModel>("ProductOptionViewModel");
 
 interface ProductOptionInterface {
-    itemInfo: Entity.Product;
+    itemInfo: any;
 }
 
 const ProductOption : React.FC<ProductOptionInterface> = (props) => {
     const history = useHistory();
     const [ quantity, setQuantity ] = useState<number>(1);
-    const [tags, setTags] = useState<object[]>([]);
+    const [tags, setTags] = useState<{groupName: string; tagName: string;}[]>([]);
     
     const getSelectedTags = (e : React.ChangeEvent<HTMLInputElement>) => {
-        setTags([...tags, {id: e.target.name, tag: e.target.value}]);
+        setTags([...tags, {groupName: e.target.name, tagName: e.target.value}]);
     }
 
     const handleBtnAddClick = () => {
         const options = {
-            id: props.itemInfo.id,
+            product: props.itemInfo.id,
             quantity: quantity,
-            option: tags
+            optionKeyword: tags[0].tagName
         };
 
         vm.clickAddToCheckout(options)
-        .then(res => alert("장바구니에 상품이 담겼습니다."))
+        .then(res => {
+            alert("장바구니에 상품이 담겼습니다.");
+            location.replace("/checkout");
+        })
         .catch(err => alert("에러가 발생하였습니다."))
-
-        history.push("/checkout");
     }
 
     return (
         <ProductOptionContainer>
             <Content>
-                <Name>{props.itemInfo.title}</Name>
-                <Price>{props.itemInfo.productDetail.price.toLocaleString('en')}￦</Price>
+                <Name>{props.itemInfo.name}</Name>
+                <Price>{props.itemInfo.releasePrice.toLocaleString('en')}￦</Price>
                 <SelectOption>
                     <Row order="first">
-                        {props.itemInfo.productDetail.option.map(option => {
+                        {props.itemInfo.options.map((option: Entity.Options) => {
                             return (
                                 <Column key={option.id}>
                                     <OptionTitle>{option.name}</OptionTitle>
                                     <OptionTagList>
-                                        {option.tag.map(tag => {
+                                        {option.keyword.map(tag => {
                                             return (
                                                 <OptionTag 
                                                     key={tag.id} 
@@ -80,13 +81,13 @@ const ProductOption : React.FC<ProductOptionInterface> = (props) => {
                 <ProductInfo>
                     <OptionTitle>Image</OptionTitle>
                     <ImageList>
-                        {props.itemInfo.image.map((image, index) => {
-                            return <img key={index} src={image}/>
+                        {props.itemInfo.image.map((image: {id: string; imageUrl: string}, index: number) => {
+                            return <img key={index} src={image.imageUrl}/>
                         })}
                     </ImageList>
                     <OptionTitle>Product Description</OptionTitle>
                     <Description>
-                        {props.itemInfo.productDetail.description}
+                        {props.itemInfo.description}
                     </Description>
                 </ProductInfo>
             </Content>

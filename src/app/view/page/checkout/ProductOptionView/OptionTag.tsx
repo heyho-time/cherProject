@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 interface OptionTagProps {
-    id : string;
-    groupId : string;
+    id : number;
+    groupId : number;
     groupName : string;
     name : string;
     getSelectedTags(e:React.ChangeEvent<HTMLInputElement>): void;
@@ -12,7 +12,7 @@ interface OptionTagProps {
 const OptionTag : React.FC<OptionTagProps> = (props) => {
     return (
         <>
-            <RadioButton type="radio" id={props.name} value={props.id} name={props.groupId} onChange={props.getSelectedTags}/>
+            <RadioButton type="radio" id={props.name} value={props.name} name={props.groupName} onChange={props.getSelectedTags}/>
             <TagLabel htmlFor={props.name}>{props.name}</TagLabel>
         </>
     )

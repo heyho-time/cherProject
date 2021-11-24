@@ -16,7 +16,7 @@ const CartTotal : React.FC<CartTotalProps> = (props) => {
 
     useEffect(() => {
         let subPrice : number = 0;
-        props.cartList.forEach(item => subPrice += item.price!);
+        props.cartList.forEach(item => subPrice += item.product.releasePrice * item.quantity);
         setSubPrice(subPrice);
         setTax(subPrice * 0.1);
     }, [props.cartList]);

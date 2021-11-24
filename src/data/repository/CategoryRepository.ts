@@ -23,7 +23,7 @@ export default class CategoryRepositoryImplent implements CategoryRepository {
         return this.categoryApi.postProductsByCategory(products);
     }
 
-    getProductsByCategory(categoryId : string): Promise<Entity.Category> {
+    getProductsByCategory(categoryId : string): Promise<object> {
         return this.categoryApi.getProductsByCategory(categoryId);
     }
 

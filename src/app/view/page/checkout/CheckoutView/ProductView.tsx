@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import * as Entity from "domain/entity";
@@ -12,9 +12,9 @@ const vm: CheckoutViewModel = container.get<CheckoutViewModel>("CheckoutViewMode
 
 interface ProductViewProps {
     productList : Entity.Product[];
-    getClickedSearchedProduct(product : string) : void;
+    getClickedSearchedProduct(product : number) : void;
     getSearchInput(user : string) : void;
-    getCategoryFilteredItems(categoryId : string) : void;
+    getCategoryFilteredItems(categoryId : number) : void;
 }
 
 const ProductView : React.FC<ProductViewProps> = (props) => {
@@ -25,7 +25,7 @@ const ProductView : React.FC<ProductViewProps> = (props) => {
     const filterProduct = (e : React.ChangeEvent<HTMLInputElement>) => {
         props.getSearchInput(e.target.value);
         const userInput = e.target.value.toLowerCase();
-        const result = userInput ? props.productList.filter(item => item.title.toLowerCase().includes(userInput) || item.productDetail.inventory.sku.toLowerCase().includes(userInput)) : [];
+        const result = userInput ? props.productList.filter(item => item.name.toLowerCase().includes(userInput) || item.SKU.toString().includes(userInput)) : [];
         setSearchedItemList(result);
     }
 
@@ -44,8 +44,10 @@ const ProductView : React.FC<ProductViewProps> = (props) => {
                         <SearchedList>
                         {searchedItemList.map(item => {
                             return <SearchedItem key={item.id} onClick={() => {
-                                props.getClickedSearchedProduct(item.id);
-                            }}>{item.title}</SearchedItem>;
+                                if(item.id) {
+                                    props.getClickedSearchedProduct(item.id);
+                                }
+                            }}>{item.name}</SearchedItem>;
                         })}
                         </SearchedList> : null
                     }

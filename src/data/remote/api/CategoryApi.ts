@@ -290,11 +290,14 @@ export default class CategoryApiImpl implements CategoryApi {
     getCategories() : Promise<Entity.Category[]> {
         return new Promise((resolve, reject) => {
             const categories : Entity.Category[] = Categories;
-            resolve(categories);
+            // resolve(categories);
 
-            // axios.get('')
-            // .then((res : any) => resolve(res))
-            // .catch(() => reject("error"))
+            axios.get('http://192.168.43.127:3000/category')
+            .then((res : any) => {
+                console.log(res);
+                resolve(res.data)
+            })
+            .catch(() => reject("error"))
         })
     }
 
@@ -302,9 +305,12 @@ export default class CategoryApiImpl implements CategoryApi {
         return new Promise((resolve, reject) => {
             console.log(categoryName);
 
-            // axios.post('', {name: categoryName})
-            // .then(response => resolve(response))
-            // .catch(error => reject(error));
+            axios.post('http://192.168.43.127:3000/category', categoryName, {headers: {authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'}})
+            .then(response => {
+                resolve(response);
+                console.log(response);
+            })
+            .catch(error => reject(error));
         })
     }
 
@@ -312,20 +318,20 @@ export default class CategoryApiImpl implements CategoryApi {
         return new Promise((resolve, reject) => {
             console.log(products);
 
-            // axios.post('', products)
-            // .then((response : any) => resolve(response))
-            // .catch(error => reject(error));
+            axios.post('http://192.168.43.127:3000/product-category', products,  {headers: {authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'}})
+            .then((response : any) => {
+                console.log(response);
+                resolve(response);
+            })
+            .catch(error => reject(error));
         })
     }
 
-    getProductsByCategory(categoryId: string): Promise<Entity.Category> {
+    getProductsByCategory(categoryId: string): Promise<object> {
         return new Promise((resolve, reject) => {
-            const productsByCategory : Entity.Category = Categories[2];
-            resolve(productsByCategory);
-
-            // axios.get(`url/categoryId`)
-            // .then((res:any) => resolve(res))
-            // .catch(err => reject("error"));
+            axios.get(`http://192.168.43.127:3000/category/${categoryId}`, {headers: {authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'}})
+            .then(res => resolve(res.data[0]))
+            .catch(err => reject("error"));
         })
     }
 
@@ -342,11 +348,9 @@ export default class CategoryApiImpl implements CategoryApi {
     
     deleteCategory(categoryId: string): Promise<void> {
         return new Promise((resolve, reject) => {
-            console.log(categoryId);
-
-            // axios.delete(`url/${categoryId}`)
-            // .then((res:any) => resolve(res))
-            // .catch(err => reject(err));
+            axios.delete(`http://192.168.43.127:3000/category/${categoryId}`, {headers: {authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'}})
+            .then((res:any) => resolve(res))
+            .catch(err => reject(err));
         })
     }
     

@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import * as Entity from "domain/entity";
 
 interface CategoryListItemInterface {
     id: string;
     name: string;
-    products?: Entity.Product[];
+    count?: number;
 }
 
 const CategoryListItem : React.FC<CategoryListItemInterface> = (props) => {
@@ -14,7 +13,7 @@ const CategoryListItem : React.FC<CategoryListItemInterface> = (props) => {
         <CategoryListItemContainer>
             <StyledLink to={{pathname: `/edit_category/${props.id}`, state: {categoryId: props.id}}}>
                 <CategoryName>{props.name}</CategoryName>
-                <AmountOfProducts>{props.products?.length} products</AmountOfProducts>
+                <AmountOfProducts>{props.count} products</AmountOfProducts>
             </StyledLink>
         </CategoryListItemContainer>
     )

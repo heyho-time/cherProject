@@ -6,46 +6,36 @@ import axios from "axios";
 
 const cartProducts:Entity.Cart[] = [
     {
-        "id": "1",
-        "productId": "uuid",
-        "image": ["https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg", "https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg", "https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg"],
-		"title": "cookie",
-        "price": 5000,
-        "quantity": 3,
-        "stock": 15,
-        "option": [
-            {
-                "id": "1",
-                "name": "color",
-                "tag": [{"id": "2", "name": "Gray"}]
-            },
-            {
-                "id": "2",
-                "name": "size",
-                "tag": [{"id": "1", "name": "Large"}]
-            },
-        ],
+        "id": 9,
+        "quantity": 2,
+        "optionKeyword": 'XL',
+        "product": {
+            "id": 1,
+            "name": "product1",
+            "quantity": 100,
+            "description": "남여공용 맨투맨",
+            "SKU": 11456,
+            "releasePrice": 20000,
+            "createdAt": "2021-11-17T00:11:31.000Z",
+            "updatedAt": "2021-11-22T18:26:27.513Z",
+            "image": [{"id": 1, "imageUrl": "https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg"}]
+        }
     },
     {
-        "id": "2",
-        "productId": "oopp",
-        "image": ["https://www.history.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTc3OTk5Njc1MTU5MjI1OTY1/valentines-day-chocolate-gettyimages-923430892.jpg", "url", "url"],
-		"title": "chocolate",
-        "price": 3000,
-        "quantity": 5,
-        "stock": 25,
-        "option": [
-            {
-                "id": "1",
-                "name": "color",
-                "tag": [{"id": "1", "name": "Blue"}]
-            },
-            {
-                "id": "2",
-                "name": "size",
-                "tag": [{"id": "2", "name": "Medium"}]
-            },
-        ],
+        "id": 10,
+        "quantity": 3,
+        "optionKeyword": 'XL',
+        "product": {
+            "id": 2,
+            "name": "product2",
+            "quantity": 90,
+            "description": "쿠키스",
+            "SKU": 11451,
+            "releasePrice": 10000,
+            "createdAt": "2021-11-17T00:11:31.000Z",
+            "updatedAt": "2021-11-22T18:26:27.513Z",
+            "image": [{"id": 1, "imageUrl": "https://www.clym.io/wp-content/uploads/2020/10/website-cookie.jpeg"}]
+        }
     }
 ]
 
@@ -55,7 +45,7 @@ export default class CartApiImpl implements CartApi {
         return new Promise((resolve, reject) => {
             console.log(product);
 
-            axios.post('', product)
+            axios.post('http://192.168.43.127:3000/cart', product, {headers: {authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'}})
             .then((response : any) => {
                 resolve(response);
             })
@@ -67,16 +57,26 @@ export default class CartApiImpl implements CartApi {
 
     getCartList(): Promise<Entity.Cart[]> {
         return new Promise((resolve, reject) => {
-            const cartList: Entity.Cart[] = cartProducts;
-			resolve(cartList)
+            // const cartList: Entity.Cart[] = cartProducts;
+			// resolve(cartList)
+
+            axios.get('http://192.168.43.127:3000/cart', {headers: {authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'}})
+            .then((res:any) => {
+                console.log(res);
+                resolve(res.data);
+            })
+            .catch((err : any) => {
+                console.log(err);
+                reject(err);
+            })
         })
     }
 
-    deleteCartItem(productId : string): Promise<void> {
+    deleteCartItem(productId : number): Promise<void> {
         return new Promise((resolve, reject) => {
             console.log(productId);
             
-            axios.post('', productId)
+            axios.delete(`http://192.168.43.127:3000/cart/${productId}`, {headers: {authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJnb29nbGVAZ29vZ2xlLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJHAyLnk3azhMcG5sODQ3cGpkWWRNNnVuSlJEd0xHYm1mT05SODkybEhYZzFUUWg2U3VIVDYyIiwiY2xlYXJhbmNlIjp0cnVlLCJpYXQiOjE2Mzc1ODA4NDF9.KFnK4BHwerzJg4s3MmVDdSeVana2FTEvGRR5xiI2vww'}})
             .then((response : any) => {
                 resolve(response);
                 console.log(productId);

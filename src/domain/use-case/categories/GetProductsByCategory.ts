@@ -11,7 +11,7 @@ export default class UCGetProductsByCategoryImpl implements UCGetProductsByCateg
         this.categoryRepository = categoryRepository;
     }
 
-    execute(categoryId : string): Promise<Entity.Category> {
+    execute(categoryId : string): Promise<object> {
         return this.categoryRepository.getProductsByCategory(categoryId);
     }
 }

@@ -12,9 +12,9 @@ import minusIcon from "../../../assets/images/minor-minus.png";
 interface EditOptionViewLocation {
     id: string;
     productId: string;
-    image: string[];
-    title: string;
-    options: Entity.Option[];
+    image: Entity.Image[];
+    name: string;
+    optionKeyword: string;
     stock: number;
     quantity: number;
     price: number;
@@ -41,8 +41,7 @@ const EditOptionView : React.FC = () => {
     const clickBtnSave = () => {
         const options = {
             id: locationProps.id,
-            quantity: quantity,
-            discount: {type: discountType, rate: discountRate},
+            quantity: quantity
         }
 
         vm.clickSaveOptions(options)
@@ -51,6 +50,13 @@ const EditOptionView : React.FC = () => {
             history.push("/checkout");
         })
         .catch(error => alert("저장에 실패하였습니다."));
+    }
+
+    const clickBtnRemove = () => {
+        vm.clickRemoveCheckout(locationProps.id)
+        .then(res => alert("해당 상품이 장바구니에서 삭제되었습니다."))
+        .catch(err => console.log("삭제 실패"));
+        history.push("/checkout");
     }
 
     useEffect(() => {
@@ -76,14 +82,10 @@ const EditOptionView : React.FC = () => {
                     <BtnSave onClick={clickBtnSave}>Save</BtnSave>
                 </Header>
                 <Info>
-                    <ProductImage src={locationProps.image[0]} />
+                    <ProductImage src={locationProps.image[0].imageUrl} />
                     <Row>
-                        <Name>{locationProps.title}</Name>
-                        <Option>
-                            {locationProps.options.map((option, index) => {
-                            return <span key={option.id}>{`${option.tag[0].name}${index !== (locationProps.options.length - 1) ? " / " : ""}`}</span>
-                        })}
-                        </Option>
+                        <Name>{locationProps.name}</Name>
+                        <Option><span>{locationProps.optionKeyword}</span></Option>
                     </Row>
                     <StockCount>{locationProps.stock} in stock</StockCount>
                 </Info>
@@ -112,7 +114,7 @@ const EditOptionView : React.FC = () => {
                         </DiscountType>
                     </SetDiscount>
                 </Discount>
-                <BtnRemove onClick={() => vm.clickRemoveCheckout(locationProps.id)}>Remove from Checkout</BtnRemove>
+                <BtnRemove onClick={clickBtnRemove}>Remove from Checkout</BtnRemove>
             </EditOptionBox>
         </EditOptionViewContainer>
     )

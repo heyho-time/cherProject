@@ -5,7 +5,7 @@ export interface UCGetProducts {
 }
 
 export interface UCPostAccount {
-    execute(account: Entity.User): Promise<Entity.User>;
+    execute(account: Entity.User): Promise<object>;
 }
 
 export interface UCGetCategories {
@@ -21,7 +21,7 @@ export interface UCGetCartList {
 }
 
 export interface UCDeleteCartItem {
-    execute(productId: string): Promise<void>;
+    execute(productId: number): Promise<void>;
 }
 
 export interface UCPostNewCategory {
@@ -33,7 +33,7 @@ export interface UCPostProductsByCategory {
 }
 
 export interface UCGetProductsByCategory {
-    execute(categoryId : string): Promise<Entity.Category>;
+    execute(categoryId : string): Promise<object>;
 }
 
 export interface UCPatchProductsByCategory {

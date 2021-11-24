@@ -9,11 +9,12 @@ interface ProductItemProps {
 }
 
 const ProductItem : React.FC<ProductItemProps> = (props) => {
+    console.log(props.itemInfo);
     return (
         <StyledLink to={{pathname:`/product_option/${props.itemInfo.id}`, state: {itemInfo: props.itemInfo}}}>
             <ProductItemContainer>
-                <ItemImage src={props.itemInfo.image[0]}/>
-                <ItemName>{props.itemInfo.title}</ItemName>
+                <ItemImage src={props?.itemInfo?.image[0]?.imageUrl}/>
+                <ItemName>{props.itemInfo.name}</ItemName>
             </ProductItemContainer>
         </StyledLink>
     )

@@ -1,28 +1,35 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import arrow from '../../../../assets/images/arrow-up-inverse.png';
+import ImageList from './ImageList';
 
 const Images = ()=> {
     const [ fileImage, setFileImage ] = useState("");
 
     const saveFileImage = (e: React.ChangeEvent<HTMLInputElement>) => {
       if(e.target.files) {
-        setFileImage(URL.createObjectURL(e.target.files[0]));
+        const selectedImage = e.target.files[0];
+        // const formData = new FormData();
+        // formData.append('file', selectedImage);
+        setFileImage(URL.createObjectURL(selectedImage));
       }
+
+      console.log(e.target.files);
     }
 
     return (
         <Container>
             <h3>Images</h3>
-            <AddFile>
+            <ImageList />
+            {/* <AddFile>
                 <Circle><img src={arrow} /></Circle>
                 <InputArea>
-                  <UploadInput type="file" onChange={saveFileImage} />
+                  <UploadInput type="file" multiple accept="image/*"onChange={saveFileImage} />
                   <UploadBtn>Add File</UploadBtn>
                 </InputArea>
                 <p>or drop files to upload</p>
                 {fileImage && <UploadedImage alt="sample" src={fileImage} />}
-            </AddFile>
+            </AddFile> */}
         </Container>
     );
 };
@@ -79,6 +86,7 @@ const UploadInput = styled.input`
   top: 0;
   left: 0;
   width: 100px;
+  cursor: pointer;
   opacity: 0;
   cursor: pointer;
 `

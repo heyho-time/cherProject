@@ -39,7 +39,7 @@ const EditProductsModal : React.FC<EditProductsModalInterface> = (props) => {
         if(props.modalState === false) setUserInput("");
     }, [props.selectedItemIds])
     
-    const filteredList = props.productList.filter(item => item.title.includes(userInput));
+    const filteredList = props.productList.filter(item => item.name.includes(userInput));
     
     return (
         <EditProductsModalContainer isVisible={props.modalState}>
@@ -52,9 +52,9 @@ const EditProductsModal : React.FC<EditProductsModalInterface> = (props) => {
                                     key={item.id} 
                                     id={item.id} 
                                     image={item.image} 
-                                    title={item.title} 
+                                    name={item.name} 
                                     parent="modal"
-                                    isChecked={props.selectedItemIds.includes(item.id) ? true : false}
+                                    isChecked={props.selectedItemIds.includes(item.id.toString()) ? true : false}
                                     getIsItemChecked={getIsItemChecked}
                                 />
                     })}

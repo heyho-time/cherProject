@@ -49,7 +49,7 @@ const AddCategoryView : React.FC<AddCategoryViewInterface> = (props) => {
 
     const handleBtnSave = () => {
         let productsByCategory: object[] = [];
-        selectedItems.map(item => productsByCategory.push({"category": "5", "product": item}));
+        selectedItems.map(item => productsByCategory.push({"category": "17", "product": item}));
 
         vm.addProductsByCategory(productsByCategory);
 
@@ -63,7 +63,9 @@ const AddCategoryView : React.FC<AddCategoryViewInterface> = (props) => {
         .catch(err => console.log(err));
     }, []);
     
-    const selectedProducts = productList.filter(item => selectedItems.includes(item.id));
+    const selectedProducts = productList.filter(item => {
+        if(item.id) selectedItems.includes(item.id.toString())
+    });
     
     return (
         <AddCategoryViewContainer>
@@ -85,7 +87,7 @@ const AddCategoryView : React.FC<AddCategoryViewInterface> = (props) => {
                     <SetProducts placeholder="Search for products" onClick={showProductListModal} readOnly={true} />
                     <SelectedProductList>
                         {selectedProducts.map(item => {
-                            return <ProductItem key={item.id} id={item.id} image={item.image} title={item.title} />
+                            return <ProductItem key={item.id} id={item.id} image={item.image} title={item.name} />
                         })}
                     </SelectedProductList>
                 </ProductsBox>

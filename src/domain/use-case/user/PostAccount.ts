@@ -11,7 +11,7 @@ export default class UCPostAccountImpl implements UCPostAccount {
         this.userRepository = userRepository;
     }
 
-    execute(account : Entity.User): Promise<Entity.User> {
+    execute(account : Entity.User): Promise<object> {
         return this.userRepository.postAccount(account);
     }
 }

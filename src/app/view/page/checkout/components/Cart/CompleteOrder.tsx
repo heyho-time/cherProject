@@ -19,17 +19,18 @@ const CompleteOrder : React.FC<CompleteOrderInterface> = (props) => {
              return (
                  <CartItemContainer key={item.id}>
                     <Column>
-                        <ItemImage src={item.image&&item.image[0]}/>
+                        <ItemImage src={item.product.image&&item.product.image[0]}/>
                         <ItemInfo>
-                            <Name>{item.title}</Name>
+                            <Name>{item.product.name}</Name>
                             <Option>
-                                {item.option&&item.option.map((option, index) => {
+                                {/* {item.option&&item.option.map((option, index) => {
                                     return <span key={option.id}>{`${option.tag[0].name}${index !== (item.option&&item.option.length - 1) ? " / " : ""}`}</span>
-                                })}
+                                })} */}
+                                <span>{item.optionKeyword}</span>
                             </Option>
                         </ItemInfo>
                         <ItemOrder>
-                            <Price>{item.price&&item.price.toLocaleString('en')}￦</Price>
+                            <Price>{item.product.releasePrice&&item.product.releasePrice.toLocaleString('en')}￦</Price>
                             <Quantity>Qty: {item.quantity}</Quantity>
                         </ItemOrder>
                     </Column>

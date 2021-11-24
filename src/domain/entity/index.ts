@@ -5,56 +5,63 @@ export interface User {
 }
 
 export interface Product {
-    id: string;
-    image: string[];
-    title: string;
-    categoryIds: string[];
-    productDetail: ProductDetail;
+    id : number;
+    description : string;
+    releasePrice : number;
+    image : Image[];
+    name : string;
+    productCategory : productCategory[];
+    quantity?: number;
+    SKU: number;
+    status: Status;
+    options?: Options[];
 }
 
-export interface ProductDetail {
-    price: number;
-    description: string;
-    state: ProductState;
-    option: Option[];
-    inventory: Inventory;
-}
-
-export interface ProductState {
-    tax: boolean;
-    soldOut: boolean;
-    avail: number;
+export interface productCategory {
+    id: number;
+    category: Category;
 }
 
 export interface Category {
-    id: string;
+    id: number;
     name: string;
-    products?: Product[];
+    count?: number;
 }
 
-export interface Inventory {
-    stock: number;
-    sku: string;
+export interface Image {
+    id: number;
+    imageUrl: string;
 }
 
-export interface Option {
-    id: string;
+export interface Status {
+    id: number;
+    name: boolean;
+}
+
+export interface Options {
+    id: number;
     name: string;
-    tag: Tag[];
+    keyword: Keyword[];
 }
 
-export interface Tag {
-    id: string;
+export interface Keyword {
+    id: number;
     name: string;
 }
 
 export interface Cart {
-    id: string;
-    productId: string;
-    image: string[];
-    title: string;
-    price: number;
+    id: number;
     quantity: number;
-    stock: number;
-    option: Option[];
+    optionKeyword: string;
+    product: {
+        id : number;
+        description : string;
+        releasePrice : number;
+        image : Image[];
+        name : string;
+        quantity: number;
+        SKU: number;
+        createdAt: string;
+        updatedAt: string;
+    }
 }

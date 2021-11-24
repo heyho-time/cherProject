@@ -41,7 +41,7 @@ const AddCategoryView : React.FC<EditCategoryViewInterface> = () => {
     }
 
     const handleBtnDeleteCategory = () => {
-        vm.removeCategory(categoryId)
+        vm.removeCategory("16")
         .then(res => console.log(res))
         .catch(err => console.log(err));
 
@@ -61,13 +61,10 @@ const AddCategoryView : React.FC<EditCategoryViewInterface> = () => {
 
     useEffect(() => {
         vm.getProductsByCategory(categoryId)
-        .then(res => {
+        .then((res: any) => {
             setCategoryName(res.name);
-            
-            if(res.products) {
-                const selectedItemIds = res.products.map(item => item.id);
-                setSelectedItemIds(selectedItemIds);
-            }
+            const selectedItems = res.productCategory.map((item: {id: number; product: object}) => item.id.toString())
+            setSelectedItemIds(selectedItems);
         })
         .catch(err => console.log(err));
 
@@ -76,7 +73,7 @@ const AddCategoryView : React.FC<EditCategoryViewInterface> = () => {
         .catch(err => console.log(err));
     }, []);
 
-    const selectedProducts = productList.filter(item => selectedItemIds.includes(item.id));
+    const selectedProducts = productList.filter(item => selectedItemIds.includes(item.id.toString()));
 
     return (
         <AddCategoryViewContainer>
@@ -98,7 +95,7 @@ const AddCategoryView : React.FC<EditCategoryViewInterface> = () => {
                     <SetProducts placeholder="Search for products" onClick={showProductListModal} readOnly={true} />
                     <SelectedProductList>
                         {selectedProducts.map(item => {
-                            return <ProductItem key={item.id} id={item.id} image={item.image} title={item.title} />
+                            return <ProductItem key={item.id} id={item.id} image={item.image} name={item.name} />
                         })}
                     </SelectedProductList>
                 </ProductsBox>

@@ -24,7 +24,7 @@ export default class EditCategoryViewModelImpl implements EditCategoryViewModel 
         return this.getProducts.execute();
     }
 
-    getProductsByCategory(categoryId : string): Promise<Entity.Category> {
+    getProductsByCategory(categoryId : string): Promise<object> {
         return this.getProductsCategory.execute(categoryId);
     }
 

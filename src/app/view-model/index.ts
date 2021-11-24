@@ -5,7 +5,7 @@ export interface ProductViewModel {
 }
 
 export interface UserViewModel {
-    clickSignIn: (account: Entity.User) => Promise<Entity.User>;
+    clickSignIn: (account: Entity.User) => Promise<object>;
 }
 
 export interface CategoryViewModel {
@@ -16,7 +16,7 @@ export interface CheckoutViewModel {
     clickAllCategories(): Promise<Entity.Category[]>;
     getProductList(): Promise<Entity.Product[]>;
     getCartList(): Promise<Entity.Cart[]>;
-    clickDeleteCartItem(productId: string): Promise<void>;
+    clickDeleteCartItem(productId: number): Promise<void>;
 }
 
 export interface ProductOptionViewModel {
@@ -34,7 +34,7 @@ export interface CategoryListViewModel {
 
 export interface EditCategoryViewModel {
     getProductList(): Promise<Entity.Product[]>;
-    getProductsByCategory(categoryId : string): Promise<Entity.Category>;
+    getProductsByCategory(categoryId : string): Promise<object>;
     modifyProductsByCategory(products: object): Promise<void>;
     removeCategory(categoryId: string): Promise<void>;
 }

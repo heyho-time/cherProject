@@ -5,12 +5,15 @@ import CartBox from "./CartBox";
 import CompleteOrder from "./CompleteOrder";
 import * as Entity from "domain/entity";
 
+import container from "injector";
+import { CheckoutViewModel } from "app/view-model";
+
 const CartView : React.FC = () => {
     const [ isClearBtnClicked, setisClearBtnClicked ] = useState(false);
     const [cartList, setCartList] = useState<Entity.Cart[]>([]);
     const [ isbtnCheckoutClicked, setIsBtnCheckoutClicked ] = useState<boolean>(false);
-
-
+    
+const vm: CheckoutViewModel = container.get<CheckoutViewModel>("CheckoutViewModel");
     const getCartList = (cartList : Entity.Cart[]) => {
         setCartList(cartList);
     }

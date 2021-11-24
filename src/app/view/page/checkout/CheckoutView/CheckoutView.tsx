@@ -17,11 +17,12 @@ const CheckoutView : React.FC = () => {
     useEffect(() => {
         vm.getProductList()
         .then(res => {
+            console.log(res);
             setProductList(res);
         });
     }, [searchInputStatus])
 
-    const getClickedSearchedProduct = (productId : string) => {
+    const getClickedSearchedProduct = (productId : number) => {
         setProductList(productList.filter((item) => item.id === productId));   
     }
 
@@ -31,10 +32,10 @@ const CheckoutView : React.FC = () => {
         }
     }
 
-    const getCategoryFilteredItems = (categoryId : string) => {
-        setProductList(productList.filter(item => item.categoryIds.includes(categoryId)));
+    const getCategoryFilteredItems = (categoryId : number) => {
+        setProductList(productList.filter(item => item.productCategory[0]?.category.id === categoryId));
     }
-
+    
     return (
         <>
             <CheckoutViewContainer>

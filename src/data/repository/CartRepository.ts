@@ -19,7 +19,7 @@ export default class CartRepositoryImpl implements CartRepository {
         return this.cartApi.getCartList();
     }
 
-    deleteCartItem(productId : string): Promise<void> {
+    deleteCartItem(productId : number): Promise<void> {
         return this.cartApi.deleteCartItem(productId);
     }
 }

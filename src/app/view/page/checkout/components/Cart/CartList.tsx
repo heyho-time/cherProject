@@ -17,7 +17,7 @@ const vm: CheckoutViewModel = container.get<CheckoutViewModel>("CheckoutViewMode
 const CartList : React.FC<CartListInterface> = (props) => {
     const [ cartList, setCartList ] = useState<Entity.Cart[]>([]);
 
-    const getDeleteItemId = (cartId: string) => {
+    const getDeleteItemId = (cartId: number) => {
         const newList = cartList.filter(item => item.id !== cartId);
         setCartList(newList);
 
@@ -28,12 +28,12 @@ const CartList : React.FC<CartListInterface> = (props) => {
 
     useEffect(() => {
         vm.getCartList()
-        .then(res => setCartList(res))
+        .then(res => {setCartList(res)})
         .catch(err => console.log(err));
     }, []);
 
     useEffect(() => {
-        let idList : string[] = [];
+        let idList : number[] = [];
         cartList.map(item => idList.push(item.id));
 
         if(props.isClearBtnClicked === true) {
@@ -51,16 +51,17 @@ const CartList : React.FC<CartListInterface> = (props) => {
     return(
         <CartListContainer>
             {cartList.length > 0 ? cartList.map(item => {
+                console.log(item);
                 return <CartItem 
                             key={item.id} 
                             id={item.id} 
-                            productId={item.productId}
-                            image={item.image} 
-                            title={item.title} 
-                            price={item.price} 
+                            productId={item.product.id}
+                            image={item.product.image} 
+                            name={item.product.name} 
+                            price={item.product.releasePrice} 
                             quantity={item.quantity} 
-                            stock={item.stock}
-                            option={item.option} 
+                            stock={item.product.quantity}
+                            optionKeyword={item.optionKeyword} 
                             getDeleteItemId={getDeleteItemId}
                         />;
             }) : <EmptyCart />}
@@ -69,7 +70,7 @@ const CartList : React.FC<CartListInterface> = (props) => {
 }
 
 const CartListContainer = styled.div`{
-    height: 230px;
+    min-height: 460px;
     overflow-x: scroll;
 
     scrollbar-width: none;

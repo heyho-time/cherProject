@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
+import * as Entity from "domain/entity";
+
 interface ProductItemInterface {
-    id: string;
-    image: string[];
+    id?: number;
+    image: Entity.Image[];
     title: string;
     parent?: string;
     getIsItemChecked?: (isChecked: boolean, id: string) => void;
@@ -17,16 +19,16 @@ const ProductItem : React.FC<ProductItemInterface> = (props) => {
     }
 
     useEffect(() => {
-        if(props.getIsItemChecked) {
-            props.getIsItemChecked(isChecked, props.id);
+        if(props.getIsItemChecked && props.id) {
+            props.getIsItemChecked(isChecked, props.id.toString());
         }
     }, [isChecked])
 
     return (
         <ProductItemContainer>
             <div>
-                <CheckBox type="checkbox" id={props.id} onChange={handleCheckChange} checked={isChecked} isVisible={props.parent ? true : false} />
-                <ProductImage src={props.image[0]} />
+                <CheckBox type="checkbox" id={props.id?.toString()} onChange={handleCheckChange} checked={isChecked} isVisible={props.parent ? true : false} />
+                <ProductImage src={props.image[0]?.imageUrl} />
                 <Title>{props.title}</Title>
             </div>
         </ProductItemContainer>
