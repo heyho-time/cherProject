@@ -4,7 +4,7 @@
 관리자가 상품 정보 및 카테고리를 추가하고, 상품을 장바구니에 담아 결제할 수 있는 Web POS 사이트 구현 프로젝트
 - 기간: 2021. 11. 01. ~ 2021. 11. 26.
 - [Backend GitHub](https://github.com/cheesepuff90/CHERground_project)
-- Zeplin에 업로드 되어있는 기획과 디자인을 보고 구현하였습니다.
+- Zeplin에 명시 되어있는 기획과 디자인을 보고 구현하였습니다.
 - CRA 없이 프로젝트 초기 세팅부터 레이아웃 및 기능을 직접 구현하였으며, 모든 데이터는 프론트와 백의 통신으로 받아온 데이터입니다.
 
 ## Members
@@ -12,9 +12,9 @@
 - **Backend**: 김도훈, 송영록
 
 ## Technology
-- **Frontend**: `Typescript`, `React`, `Hook`, `Styled-Components`
-- **Backend**: `Typescript`, `Node.js`, `Express`, `AWS`, `MySQL`, `Docker`
-- **Common**: `Design Pattern(MVVM)`, `Git & GitHub`
+- **Frontend**: `React`, `Hook`, `Styled-Components`
+- **Backend**: `Node.js`, `Express`, `AWS`, `MySQL`, `Docker`
+- **Common**: `Typescript`, `MVVM Design Pattern`, `Git`
 
 ## MVVM 디자인 패턴
 - Clean Architecture를 프로젝트에 적용하기 위해 MVVM 디자인 패턴을 사용하였습니다.
