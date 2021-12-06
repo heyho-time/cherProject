@@ -1,7 +1,7 @@
 {
   "name": "cherground-pos",
   "version": "1.0.0",
-  "description": "Cherground-POS",
+  "description": "ChergroundPOS",
   "main": "index.js",
   "scripts": {
     "bundle": "webpack",
